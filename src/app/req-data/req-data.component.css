@@ -1,0 +1,29 @@
+.mat-radio-button {
+  position: relative;
+  margin-right: 20px;
+  margin-top: 5px
+}
+.request-button {
+  position: relative;
+  margin-left: 20px;
+  bottom: 5px;
+}
+.radio-button-group1 {
+  position: relative;
+  margin-top: 10px;
+}
+.mat-raised-button2 {
+  background-color: green;
+  color: white;
+}
+.cropper-image {
+  /*position: relative;*/
+  /*top:5px;*/
+  width: 100%;
+  height: 550px;
+  overflow: hidden;
+  background-image: url("../../assets/images/t3q2.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+
+}
