@@ -1,5 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-img-detail',
@@ -16,6 +17,11 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
                   afdsfsdfsdfbfdsfefefeefdfdsfasfasdfsd
               </p>
           </mat-card-content>
+          <form [formGroup]="iform" class="example-form">
+              <mat-form-field class="example-full-width">
+                  <input matInput placeholder="저장할 파일 이름 입력." formControlName="filename"/>
+              </mat-form-field>
+          </form>
           <mat-card-actions align="end">
               <button mat-raised-button (click)="close()">취소</button>
               <button mat-raised-button color="primary" (click)="save()">저장</button>
@@ -37,16 +43,24 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
   ]
 })
 export class ImgDetailComponent implements OnInit {
-
+  iform: FormGroup;
   constructor(public dialogRef: MatDialogRef<ImgDetailComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any) { }
+              @Inject(MAT_DIALOG_DATA) public data: any,
+              private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.iform = this.fb.group({
+      filename: ['', Validators.required]
+    })
   }
   close() {
     this.dialogRef.close();
   }
   save() {
+    if( this.iform.invalid ) {
+      window.alert('저장할 파일이름을 입력하세요!!');
+      return;
+    }
     this.dialogRef.close();
   }
 

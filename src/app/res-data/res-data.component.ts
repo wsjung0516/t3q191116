@@ -126,8 +126,8 @@ export class ResDataComponent implements OnInit {
   rdata: any;
   dispImgDetail(event) {
     this.matDialog.open( ImgDetailComponent, {
-      height: '550px',
-      width: '400px',
+      height: '650px',
+      width: '450px',
       data: event
     })
   }
