@@ -4,7 +4,7 @@ import {HomeComponent} from './home/home.component';
 
 
 const routes: Routes = [
-  { path: '', component: HomeComponent},
+  { path: '', redirectTo: 'req-data', pathMatch: 'full'},
   { path: 'req-data',
     loadChildren: () => import('./req-data/req-data.module').then( m => m.ReqDataModule)},
   { path: 'res-data',

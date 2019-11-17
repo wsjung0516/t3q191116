@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   MatButtonModule,
-  MatCheckboxModule, MatIconModule, MatProgressBarModule,
+  MatCheckboxModule, MatDialogModule, MatGridListModule, MatIconModule, MatProgressBarModule,
   MatRadioModule, MatSnackBarModule,
   MatTabsModule, MatToolbarModule
 } from '@angular/material';
@@ -15,7 +15,9 @@ const MaterialModules = [
   MatIconModule,
   MatToolbarModule,
   MatProgressBarModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatGridListModule,
+  MatDialogModule
 
 ]
 

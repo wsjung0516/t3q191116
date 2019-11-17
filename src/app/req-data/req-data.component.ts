@@ -63,7 +63,7 @@ export class ReqDataComponent implements OnInit{
   }
   moveToResPage() {
     this.isProgress = false;
-    this._router.navigate(['/res-data']);
+    this._router.navigate(['/res-data', {image: this.croppedImage}]);
   }
   reset()
   {

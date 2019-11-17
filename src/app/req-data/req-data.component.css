@@ -1,6 +1,6 @@
 .mat-radio-button {
   position: relative;
-  margin-right: 20px;
+  margin-right: 10px;
   margin-top: 5px
 }
 .request-button {
@@ -8,19 +8,23 @@
   margin-left: 20px;
   bottom: 5px;
 }
-.radio-button-group1 {
+.mat-fab1 {
   position: relative;
-  margin-top: 10px;
+  z-index: 100;
+}
+.radio-button-group1 {
+  top: -20px;
+  position: relative;
 }
 .mat-raised-button2 {
   background-color: green;
   color: white;
 }
 .cropper-image {
-  /*position: relative;*/
-  /*top:5px;*/
+  position: relative;
+  top:-40px;
   width: 100%;
-  height: 550px;
+  height: 500px;
   overflow: hidden;
   background-image: url("../../assets/images/t3q2.png");
   background-size: contain;

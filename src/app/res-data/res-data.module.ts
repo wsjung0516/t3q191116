@@ -16,7 +16,7 @@ const route = [
   imports: [
     CommonModule,
     AngularMaterialModule,
-    RouterModule.forChild(route)
+    RouterModule.forChild(route),
   ]
 })
 export class ResDataModule { }
