@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ResDataComponent } from './res-data.component';
 import {AngularMaterialModule} from '../../shared/modules/angular-material.module';
 import {RouterModule} from '@angular/router';
+import {HttpClientModule} from '@angular/common/http';
 
 const route = [
   {path: '', component: ResDataComponent},
@@ -17,6 +18,7 @@ const route = [
     CommonModule,
     AngularMaterialModule,
     RouterModule.forChild(route),
+    HttpClientModule
   ]
 })
 export class ResDataModule { }
