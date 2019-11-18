@@ -54,14 +54,14 @@ export class ImgDetailComponent implements OnInit {
     })
   }
   close() {
-    this.dialogRef.close();
+    this.dialogRef.close({});
   }
   save() {
     if( this.iform.invalid ) {
       window.alert('저장할 파일이름을 입력하세요!!');
       return;
     }
-    this.dialogRef.close();
+    this.dialogRef.close({res: 'Y', url: this.data.big, fileName: this.iform.get('filename').value});
   }
 
 }

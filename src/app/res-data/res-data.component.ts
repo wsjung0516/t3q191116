@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {MatDialog} from '@angular/material';
 import {ImgDetailComponent} from '../components/img-detail/img-detail.component';
+import {HttpClient} from "@angular/common/http";
+import {FileSaverService} from "ngx-filesaver";
 
 @Component({
   selector: 'app-res-data',
@@ -14,7 +16,9 @@ export class ResDataComponent implements OnInit {
   galleryImages: any[];
 
   constructor(private activatedRoute: ActivatedRoute,
-              private matDialog: MatDialog
+              private matDialog: MatDialog,
+              private http: HttpClient,
+              private fileSaverService: FileSaverService,
               ) { }
 
 
@@ -125,11 +129,24 @@ export class ResDataComponent implements OnInit {
   }
   rdata: any;
   dispImgDetail(event) {
-    this.matDialog.open( ImgDetailComponent, {
+    const dialorRef = this.matDialog.open( ImgDetailComponent, {
       height: '650px',
       width: '450px',
       data: event
     })
+    dialorRef.afterClosed().subscribe((res) => {
+      if( res.res === 'Y') {
+        console.log('data, filename', res.url, res.fileName);
+        this.saveFile( res.url, res.fileName);
+      }
+    })
   }
-
+  saveFile( url, fileName) {
+    this.http.get(url, {
+      observe: 'response',
+      responseType: 'blob'
+    }).subscribe(res => {
+      this.fileSaverService.save(res.body, fileName);
+    });
+  }
 }
