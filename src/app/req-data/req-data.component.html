@@ -10,7 +10,7 @@
 <div class="cropper-image">
   <angular-cropper #angularCropper [cropperOptions]="cropperOptions" [imageUrl]="url" *ngIf="url"></angular-cropper>
 </div>
-<div style="position:relative;top: -50px" *ngIf="!!angularCropper">
+<div style="position:relative;top: -50px;display: flex;justify-content: center" *ngIf="!!angularCropper">
   <button mat-raised-button color="primary" (click)="zoom(true)"><i class="fa fa-search-plus fa-lg"></i></button>
   <button mat-stroked-button color="primary" (click)="zoom(false)"><i class="fa fa-search-minus fa-lg"></i></button>
   <!--<button mat-stroked-button color="warn" (click)="save()"><i class="fa fa-crop fa-lg"></i></button>-->
@@ -24,9 +24,8 @@
 </div>
 <div class="radio-button-group1" *ngIf="!!angularCropper">
   <mat-radio-group aria-label="Select an option" [ngModel]="radioValue">
-    <mat-radio-button value="1">Option 1</mat-radio-button>
-    <mat-radio-button value="2">Option 2</mat-radio-button>
-    <mat-radio-button value="3">Option 3</mat-radio-button>
+    <mat-radio-button value="1">Concept</mat-radio-button>
+    <mat-radio-button value="2">Shape</mat-radio-button>
   </mat-radio-group>
   <mat-progress-bar mode="indeterminate" *ngIf="isProgress"></mat-progress-bar>
   <span class="request-button">

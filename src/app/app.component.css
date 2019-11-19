@@ -2,7 +2,7 @@
   background-image: url("../assets/images/t3q3.png");
   background-size: contain;
   background-repeat: no-repeat;
-  height: 120px;
+  height: 80px;
   opacity: 0.8;
 }
 .mat-tab1 {
@@ -19,14 +19,14 @@
   */
 }
 
-@media (max-width: 630px) {
+@media (max-width: 450px) {
   .container {
     width: auto;
   }
 }
-@media (min-width: 640px) {
+@media (min-width: 451px) {
   .container {
-    width: 640px;
+    width: 450px;
   }
 }
 
