@@ -1,6 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-img-detail',
@@ -46,7 +47,8 @@ export class ImgDetailComponent implements OnInit {
   iform: FormGroup;
   constructor(public dialogRef: MatDialogRef<ImgDetailComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
-              private fb: FormBuilder) { }
+              private fb: FormBuilder,
+              private http: HttpClient) { }
 
   ngOnInit() {
     this.iform = this.fb.group({
@@ -61,6 +63,7 @@ export class ImgDetailComponent implements OnInit {
       window.alert('저장할 파일이름을 입력하세요!!');
       return;
     }
+
     this.dialogRef.close({res: 'Y', url: this.data.big, fileName: this.iform.get('filename').value});
   }
 

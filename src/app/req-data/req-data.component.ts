@@ -3,6 +3,7 @@ import {FormBuilder} from '@angular/forms';
 import {CropperComponent } from 'angular-cropperjs';
 import {MatSnackBar} from '@angular/material';
 import {Router} from '@angular/router';
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'cropper',
@@ -26,7 +27,8 @@ export class ReqDataComponent implements OnInit{
   constructor(private fb: FormBuilder,
               private changeDetectorRef: ChangeDetectorRef,
               private _snackBar: MatSnackBar,
-              private _router: Router) {
+              private _router: Router,
+              private _http: HttpClient) {
     this.cropperOptions={
       dragMode:'crop',
       autoCrop:true,
@@ -48,12 +50,18 @@ export class ReqDataComponent implements OnInit{
         .cropper.getCroppedCanvas()
         .toDataURL('image/jpeg', (100/100));
       // (document.getElementById("myimg") as HTMLImageElement).src=this.croppedImage;
-      this.openSnackBar("접수 되었습니다. 잠시만 기다려 주세요!!",'');
-      setTimeout(() => {
-        this.moveToResPage();
-      }, 4000);
+      this.postData();
       // console.log(this.croppedImage);
     }
+  }
+  private postData () {
+    this.openSnackBar("접수 되었습니다. 잠시만 기다려 주세요!!",'');
+    setTimeout(() => {
+      this.moveToResPage();
+    }, 4000);
+    //
+    this._http.post('url', toFormData(this.croppedImage))
+      .pipe().subscribe( (val) => console.log('resposne from t3q -->', val));
   }
   openSnackBar(message: string, action: string) {
     this.isProgress = true;
@@ -134,8 +142,14 @@ export class ReqDataComponent implements OnInit{
       }
     }
   }
+}
+export function toFormData<T>( formValue: T ) {
+  const formData = new FormData();
 
-  login() {
-
+  for ( const key of Object.keys(formValue) ) {
+    const value = formValue[key];
+    formData.append(key, value);
   }
+
+  return formData;
 }
