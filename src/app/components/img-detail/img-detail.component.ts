@@ -1,7 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-img-detail',
@@ -10,7 +9,9 @@ import {HttpClient} from "@angular/common/http";
           <mat-card-header>
               <mat-card-title>Title</mat-card-title>
           </mat-card-header>
-          <img mat-card-image [src]="data.big">
+          <div style="display: flex;flex-shrink:1; flex-grow:1;height: 330px">
+            <img mat-card-image [src]="data.big">
+          </div>
           <mat-card-content>
               <p>
                   afdsfsdfsdfbfdsfefefeefdfdsfasfasdfsd
@@ -48,7 +49,7 @@ export class ImgDetailComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<ImgDetailComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
               private fb: FormBuilder,
-              private http: HttpClient) { }
+              ) { }
 
   ngOnInit() {
     this.iform = this.fb.group({

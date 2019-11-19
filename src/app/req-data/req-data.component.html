@@ -7,10 +7,11 @@
   <img  id="myimg"  src="" alt="">
 </div>
 <div>
+<!--<div class="cropper-image" [style.background-image]="'url('+'../../assets/images/t3q2.png'+')'">-->
 <div class="cropper-image">
   <angular-cropper #angularCropper [cropperOptions]="cropperOptions" [imageUrl]="url" *ngIf="url"></angular-cropper>
 </div>
-<div style="position:relative;top: -50px;display: flex;justify-content: center" *ngIf="!!angularCropper">
+<div class="button-group1" *ngIf="!!angularCropper">
   <button mat-raised-button color="primary" (click)="zoom(true)"><i class="fa fa-search-plus fa-lg"></i></button>
   <button mat-stroked-button color="primary" (click)="zoom(false)"><i class="fa fa-search-minus fa-lg"></i></button>
   <!--<button mat-stroked-button color="warn" (click)="save()"><i class="fa fa-crop fa-lg"></i></button>-->
@@ -22,13 +23,13 @@
   -->
   <button mat-stroked-button  color="accent" (click)="destroy()"><i class="fa fa-window-close  fa-lg"></i></button>
 </div>
+  <mat-progress-bar mode="indeterminate" *ngIf="isProgress"></mat-progress-bar>
 <div class="radio-button-group1" *ngIf="!!angularCropper">
   <mat-radio-group aria-label="Select an option" [ngModel]="radioValue">
     <mat-radio-button value="1">Concept</mat-radio-button>
     <mat-radio-button value="2">Shape</mat-radio-button>
   </mat-radio-group>
-  <mat-progress-bar mode="indeterminate" *ngIf="isProgress"></mat-progress-bar>
   <span class="request-button">
-    <button class="mat-raised-button2" mat-raised-button (click)="save()">검사시작</button>
+    <button class="mat-raised-button2" mat-raised-button (click)="save()">검색시작</button>
   </span>
 </div>

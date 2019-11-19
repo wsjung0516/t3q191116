@@ -20,7 +20,7 @@ export class ReqDataComponent implements OnInit{
   scaleValY=1;
   form
   selectedFile=null;
-  url = '';
+  url = null;
   imgcontainer;
   radioValue: string;
   isProgress = false;
@@ -60,8 +60,14 @@ export class ReqDataComponent implements OnInit{
       this.moveToResPage();
     }, 4000);
     //
+/*
     this._http.post('url', toFormData(this.croppedImage))
       .pipe().subscribe( (val) => console.log('resposne from t3q -->', val));
+*/
+  }
+  backgroundImage() {
+    //return 'url('+'../../assets/images/t3q4.png'+')';
+    return `url("../../assets/images/t3q2.png")`;
   }
   openSnackBar(message: string, action: string) {
     this.isProgress = true;

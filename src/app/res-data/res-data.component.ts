@@ -32,6 +32,7 @@ export class ResDataComponent implements OnInit {
         let base64Image = btoa(this.image);
         localStorage.setItem('image', base64Image);
       }
+      this.imageData.unshift({small:this.image, text:'Original'});
     });
 
     this.imageData = [
@@ -128,6 +129,20 @@ export class ResDataComponent implements OnInit {
     ];
   }
   rdata: any;
+  dispOriginalImage() {
+    const dialorRef = this.matDialog.open( ImgDetailComponent, {
+      height: '650px',
+      width: '450px',
+      data: {big:this.image}
+    })
+    dialorRef.afterClosed().subscribe((res) => {
+      if( res.res === 'Y') {
+        console.log('data, filename', res.url, res.fileName);
+        this.saveFile( res.url, res.fileName);
+      }
+    })
+
+  }
   dispImgDetail(event) {
     const dialorRef = this.matDialog.open( ImgDetailComponent, {
       height: '650px',

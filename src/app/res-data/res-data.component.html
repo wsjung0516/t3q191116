@@ -1,14 +1,22 @@
 <div class="request-image">
-  <h5><span style="color: blue">Original Image</span></h5>
-  <img [src]="image">
+  <mat-card>
+    <img mat-card-image [src]="image" (click)="dispOriginalImage()">
+  </mat-card>
+</div>
+<!--
+<div style="position:relative; top: 10px">
+  <button mat-raised-button (click)="dispOriginalImage()">Original Image</button>
 </div>
 <div class="response-title">
-  <h5>Response Images</h5>
 </div>
+-->
 <div class="respone-image">
   <mat-grid-list cols="4" rowHeight="1:1" >
     <mat-grid-tile *ngFor="let img of imageData;let i = index" (click)="dispImgDetail(img)">
       <img [src]="img.small">
+      <div *ngIf="img.text">
+        {{img.text}}
+      </div>
     </mat-grid-tile>
   </mat-grid-list>
 </div>
