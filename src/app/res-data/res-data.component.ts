@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {MatDialog} from '@angular/material';
 import {ImgDetailComponent} from '../components/img-detail/img-detail.component';
 import {HttpClient} from "@angular/common/http";
@@ -19,6 +19,7 @@ export class ResDataComponent implements OnInit {
               private matDialog: MatDialog,
               private http: HttpClient,
               private fileSaverService: FileSaverService,
+              private router: Router
               ) { }
 
 
@@ -163,5 +164,8 @@ export class ResDataComponent implements OnInit {
     }).subscribe(res => {
       this.fileSaverService.save(res.body, fileName);
     });
+  }
+  goHome() {
+    this.router.navigate(['/req-data']);
   }
 }

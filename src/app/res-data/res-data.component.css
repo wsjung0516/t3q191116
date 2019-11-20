@@ -12,12 +12,13 @@
 }
 .request-image {
   position: relative;
-  top: 10px;
+  top: -20px;
   display: flex;
   flex-direction: column;
   margin-left: auto;
   margin-right: auto;
-  width: 30%;
+  width: 40%;
+  overflow: hidden;
 }
 img {
 }
@@ -33,11 +34,16 @@ mat-grid-tile {
 }
 .respone-image {
   position:relative;
-  top: 20px;
+  top: 0px;
   width: 100%;
   height: 550px;
   overflow-y: scroll;
 }
 .mat-card {
   padding: 12px;
+}
+.fab2 {
+  position: relative;
+  left: 10px;
+  top: 0px;
 }

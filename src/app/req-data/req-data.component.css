@@ -1,3 +1,8 @@
+.res-contatiner {
+  position: relative;
+  top: -20px;
+  z-index: 1;
+}
 .mat-radio-button {
   position: relative;
   margin-right: 10px;
@@ -12,7 +17,7 @@
   position: relative;
   top: 0px;
   left: 45%;
-  z-index: 100;
+  z-index: 200;
   background-color: green;
 }
 .button-group1 {
@@ -24,7 +29,7 @@
 }
 .radio-button-group1 {
   position: relative;
-  top: -20px;
+  top: -30px;
   display: flex;
   justify-content: center;
 
@@ -37,12 +42,22 @@
 }
 .cropper-image {
   position: relative;
-  top:-30px;
+  top:-20px;
   width: 100%;
-  height: 350px;
+  height: 440px;
   overflow: hidden;
   background-image: url("../../assets/images/t3q4.png");
   background-size: contain;
   background-repeat: no-repeat;
   z-index: 10;
+}
+.fab2 {
+  position: relative;
+  left: 20px;
+  top: -10px;
+  z-index: 100;
+}
+.progress-bar1 {
+  position: relative;
+  top: -10px;
 }

@@ -9,8 +9,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
           <mat-card-header>
               <mat-card-title>Title</mat-card-title>
           </mat-card-header>
-          <div style="display: flex;flex-shrink:1; flex-grow:1;height: 330px">
-            <img mat-card-image [src]="data.big">
+          <div style="display: flex;flex-shrink:1; flex-grow:1;height: 330px; overflow: hidden">
+            <img class="card-img" [src]="data.big">
           </div>
           <mat-card-content>
               <p>

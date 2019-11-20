@@ -42,6 +42,10 @@ export class ReqDataComponent implements OnInit{
     this.changeDetectorRef.detectChanges();
     this.radioValue = '1';
   }
+  goNextPage() {
+    console.log('router is called');
+    this._router.navigate(['/res-data']);
+  }
 
   save()
   {
@@ -148,14 +152,4 @@ export class ReqDataComponent implements OnInit{
       }
     }
   }
-}
-export function toFormData<T>( formValue: T ) {
-  const formData = new FormData();
-
-  for ( const key of Object.keys(formValue) ) {
-    const value = formValue[key];
-    formData.append(key, value);
-  }
-
-  return formData;
 }
