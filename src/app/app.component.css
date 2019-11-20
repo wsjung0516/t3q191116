@@ -17,14 +17,14 @@
   margin-left: auto;
 }
 
-@media (max-width: 450px) {
+@media (max-width: 350px) {
   .container {
     width: auto;
   }
 }
-@media (min-width: 451px) {
+@media (min-width: 351px) {
   .container {
-    width: 450px;
+    width: 350px;
   }
 }
 
