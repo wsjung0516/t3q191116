@@ -16,6 +16,7 @@ export class ReqDataComponent implements OnInit{
   @ViewChild('result', {static: true}) public result:any;
   cropperOptions:any;
   croppedImage=null;
+  modifyImage=null;
   myImg=null;
   scaleValX=1;
   scaleValY=1;
@@ -55,16 +56,22 @@ export class ReqDataComponent implements OnInit{
         .cropper.getCroppedCanvas()
         .toDataURL('image/jpeg', (100/100));
       // (document.getElementById("myimg") as HTMLImageElement).src=this.croppedImage;
-      this.postData();
-      // console.log(this.croppedImage);
+     // let idx = this.croppedImage.find(',');
+      this.modifyImage = this.croppedImage.slice(23, this.croppedImage.length);
+      let height = this.angularCropper.cropper.getCroppedCanvas().height;
+      let width = this.angularCropper.cropper.getCroppedCanvas().width;
+      console.log('this.corrpedImage, height, width', height, width);
+      let data = {
+        img_name: 't3q',
+        imageSize: (height/width),
+        imageType: 'jpeg',
+        imageEmb: this.modifyImage,
+        option: 'shape'
+      };
+      this.postData(data);
     }
   }
-  private postData () {
-    let data = {
-      file: this.croppedImage,
-      option: this.radioValue
-    };
-
+  private postData (data) {
     // this._resImageService.postReqImage( data);
     this.isProgress = true;
 

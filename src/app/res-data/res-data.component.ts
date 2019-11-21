@@ -132,8 +132,8 @@ export class ResDataComponent implements OnInit {
   rdata: any;
   dispOriginalImage() {
     const dialorRef = this.matDialog.open( ImgDetailComponent, {
-      height: '650px',
-      width: '450px',
+      height: '470px',
+      width: '300px',
       data: {big:this.image}
     })
     dialorRef.afterClosed().subscribe((res) => {
@@ -146,8 +146,8 @@ export class ResDataComponent implements OnInit {
   }
   dispImgDetail(event) {
     const dialorRef = this.matDialog.open( ImgDetailComponent, {
-      height: '650px',
-      width: '450px',
+      width: '300px',
+      height: '470px',
       data: event
     })
     dialorRef.afterClosed().subscribe((res) => {

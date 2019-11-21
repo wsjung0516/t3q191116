@@ -5,35 +5,51 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 @Component({
   selector: 'app-img-detail',
   template: `
-      <mat-card class="example-card">
-          <mat-card-header>
-              <mat-card-title>Title</mat-card-title>
-          </mat-card-header>
-          <div style="display: flex;flex-shrink:1; flex-grow:1;height: 330px; overflow: hidden">
-            <img class="card-img" [src]="data.big">
-          </div>
-          <mat-card-content>
-              <p>
-                  afdsfsdfsdfbfdsfefefeefdfdsfasfasdfsd
-                  afdsfsdfsdfbfdsfefefeefdfdsfasfasdfsd
-                  afdsfsdfsdfbfdsfefefeefdfdsfasfasdfsd
-              </p>
-          </mat-card-content>
-          <form [formGroup]="iform" class="example-form">
-              <mat-form-field class="example-full-width">
-                  <input matInput placeholder="저장할 파일 이름 입력." formControlName="filename"/>
-              </mat-form-field>
-          </form>
-          <mat-card-actions align="end">
-              <button mat-raised-button (click)="close()">취소</button>
-              <button mat-raised-button color="primary" (click)="save()">저장</button>
-          </mat-card-actions>
-      </mat-card>
+    <div class="dialog-container">
+        <mat-card class="width-card">
+            <mat-card-header>
+                <mat-card-title>Title</mat-card-title>
+            </mat-card-header>
+            <div class="card_image">
+                <img class="card-img" [src]="data.big">
+            </div>
+            <mat-card-content>
+                <p>
+                    afdsfsdfsdfbfdsfefefeefdfdsfasfasdfsd
+                    afdsfsdfsdfbfdsfefefeefdfdsfasfasdfsd
+                    afdsfsdfsdfbfdsfefefeefdfdsfasfasdfsd
+                </p>
+            </mat-card-content>
+            <!--
+                      <form [formGroup]="iform" class="example-form">
+                          <mat-form-field class="example-full-width">
+                              <input matInput placeholder="저장할 파일 이름 입력." formControlName="filename"/>
+                          </mat-form-field>
+                      </form>
+            -->
+            <mat-card-actions align="end">
+                <button mat-raised-button (click)="close()">취소</button>
+                <button mat-raised-button color="primary" (click)="save()">저장</button>
+            </mat-card-actions>
+        </mat-card>
+
+    </div>
   `,
   styles: [
     `
-          .example-card {
-              max-width: 400px;
+      .dialog-container {
+          padding: 4px 4px 4px 4px;
+      }
+      .card-img {
+          display: flex;
+          justify-content: center; 
+          height: 250px; 
+          overflow: hidden
+          
+      }
+          .width-card {
+              max-width: 270px;
+              padding: 0px;
           }
 
           .example-header-image {
