@@ -4,6 +4,7 @@ import {CropperComponent } from 'angular-cropperjs';
 import {MatSnackBar} from '@angular/material';
 import {Router} from '@angular/router';
 import {HttpClient} from "@angular/common/http";
+import {ResImageService} from "../app/services/res-image.service";
 
 @Component({
   selector: 'cropper',
@@ -28,7 +29,7 @@ export class ReqDataComponent implements OnInit{
               private changeDetectorRef: ChangeDetectorRef,
               private _snackBar: MatSnackBar,
               private _router: Router,
-              private _http: HttpClient) {
+              private _resImageService: ResImageService) {
     this.cropperOptions={
       dragMode:'crop',
       autoCrop:true,
@@ -59,15 +60,37 @@ export class ReqDataComponent implements OnInit{
     }
   }
   private postData () {
-    this.openSnackBar("접수 되었습니다. 잠시만 기다려 주세요!!",'');
-    setTimeout(() => {
-      this.moveToResPage();
-    }, 4000);
-    //
-/*
-    this._http.post('url', toFormData(this.croppedImage))
-      .pipe().subscribe( (val) => console.log('resposne from t3q -->', val));
-*/
+    let data = {
+      file: this.croppedImage,
+      option: this.radioValue
+    };
+
+    // this._resImageService.postReqImage( data);
+    this.isProgress = true;
+
+    this._resImageService.postReqImage(data)
+      .subscribe( (val) => {
+        console.log('resposne from t3q -->', val)
+        if( val.res === 200) {
+          this.openSnackBar("접수 되었습니다. 잠시만 기다려 주세요!!",'');
+        }
+        if( val.res === 201) {
+          this.isProgress = false;
+          // this.rData = [...val];
+          this.openSnackBar("데이터 처리가 완료 되었습니다.!!",'');
+          this.moveToResPage();
+        }
+      });
+
+    /**
+     질문 1: 데이터 전송 형식
+     {file: image, option: 1} 으로 FormData 에 담아서 Post 형식으로 보내면 되는지?
+     여기서 image는 base64로 변환된 것.
+     option 1: Concept, option 2: Shape 로 구분.
+
+     질문2: 상기 형식으로 서버에 보내면 서버에서는, 처음에 접수하고 접수 결과를 바로 보내주고,
+     그 다음에 이미지 데이터를 보내주는 지 확인 필요. 이때 클라이언트는 계속 기다리고 있으면 되는 건지.
+     * */
   }
   backgroundImage() {
     //return 'url('+'../../assets/images/t3q4.png'+')';
@@ -153,3 +176,4 @@ export class ReqDataComponent implements OnInit{
     }
   }
 }
+
