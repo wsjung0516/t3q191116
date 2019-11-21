@@ -171,7 +171,7 @@ export class ReqDataComponent implements OnInit{
     {
       this.destroy();
     }
-    console.log(this.imgcontainer);
+    // console.log(this.imgcontainer);
     if (event.target.files && event.target.files[0]) {
       this.selectedFile=event.target.files[0];
       var reader = new FileReader();
