@@ -32,6 +32,7 @@ mat-grid-tile {
   text-align: center;
   color: blue;
 }
+/*
 .respone-image {
   position:relative;
   top: 0px;
@@ -39,6 +40,7 @@ mat-grid-tile {
   height: 550px;
   overflow-y: scroll;
 }
+*/
 .mat-card {
   padding: 12px;
 }
@@ -46,4 +48,7 @@ mat-grid-tile {
   position: relative;
   left: 10px;
   top: 0px;
+}
+cdk-virtual-scroll-viewport {
+  height: 500px;
 }

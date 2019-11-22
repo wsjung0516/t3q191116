@@ -6,6 +6,7 @@ import {
   MatRadioModule, MatSnackBarModule,
   MatTabsModule, MatToolbarModule
 } from '@angular/material';
+import {ScrollingModule} from '@angular/cdk/scrolling';
 
 const MaterialModules = [
   MatButtonModule,
@@ -19,7 +20,8 @@ const MaterialModules = [
   MatGridListModule,
   MatDialogModule,
   MatFormFieldModule,
-  MatInputModule
+  MatInputModule,
+  ScrollingModule
 
 ]
 

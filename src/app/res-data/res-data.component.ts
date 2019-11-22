@@ -1,20 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MatDialog} from '@angular/material';
 import {ImgDetailComponent} from '../components/img-detail/img-detail.component';
 import {HttpClient} from "@angular/common/http";
 import {FileSaverService} from "ngx-filesaver";
+import {BehaviorSubject} from 'rxjs';
 
 @Component({
   selector: 'app-res-data',
   templateUrl: './res-data.component.html',
-  styleUrls: ['./res-data.component.css']
+  styleUrls: ['./res-data.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ResDataComponent implements OnInit {
+export class ResDataComponent implements OnInit, AfterViewInit {
   image:any;
   imageData: any[] = [];
   galleryImages: any[];
-
+  statesObservable = new BehaviorSubject([]);
+  // statesObservable = new BehaviorSubject(this.imageData);
   constructor(private activatedRoute: ActivatedRoute,
               private matDialog: MatDialog,
               private http: HttpClient,
@@ -22,6 +25,12 @@ export class ResDataComponent implements OnInit {
               private router: Router
               ) { }
 
+
+  ngAfterViewInit(): void {
+    setTimeout(()=> {
+      this.statesObservable.next(this.imageData.map(val => val) );
+    });
+  }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe( (val) => {
@@ -33,9 +42,7 @@ export class ResDataComponent implements OnInit {
         let base64Image = btoa(this.image);
         localStorage.setItem('image', base64Image);
       }
-      this.imageData.unshift({small:this.image, text:'Original'});
     });
-
     this.imageData = [
       {
         small: 'https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/1-small.jpeg',
