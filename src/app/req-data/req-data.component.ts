@@ -37,7 +37,7 @@ export class ReqDataComponent implements OnInit{
       movable:true,
       zoomable:true,
       scalable:true,
-      autoCropArea:0.8,
+      autoCropArea:1,
     };
   }
   ngOnInit() {
@@ -46,7 +46,7 @@ export class ReqDataComponent implements OnInit{
   }
   goNextPage() {
     console.log('router is called');
-    this._router.navigate(['/res-data']);
+    this._router.navigate(['/res-sample_data']);
   }
 
   save()
@@ -60,7 +60,7 @@ export class ReqDataComponent implements OnInit{
       this.modifyImage = this.croppedImage.slice(23, this.croppedImage.length);
       let height = this.angularCropper.cropper.getCroppedCanvas().height;
       let width = this.angularCropper.cropper.getCroppedCanvas().width;
-      console.log('this.corrpedImage, height, width', height, width);
+      // console.log('this.corrpedImage, height, width', height, width);
       let data = {
         img_name: 't3q',
         imageSize: (height/width),
@@ -72,7 +72,7 @@ export class ReqDataComponent implements OnInit{
     }
   }
   private postData (data) {
-    // this._resImageService.postReqImage( data);
+    // this._resImageService.postReqImage( sample_data);
     this.isProgress = true;
 
     this._resImageService.postReqImage(data)
@@ -111,7 +111,7 @@ export class ReqDataComponent implements OnInit{
   }
   moveToResPage() {
     this.isProgress = false;
-    this._router.navigate(['/res-data', {image: this.croppedImage}]);
+    this._router.navigate(['/res-sample_data', {image: this.croppedImage}]);
   }
   reset()
   {
@@ -175,7 +175,7 @@ export class ReqDataComponent implements OnInit{
     if (event.target.files && event.target.files[0]) {
       this.selectedFile=event.target.files[0];
       var reader = new FileReader();
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
+      reader.readAsDataURL(event.target.files[0]); // read file as sample_data url
       reader.onload = (event) => { // called once readAsDataURL is completed
         this.url = reader.result.toString();
 

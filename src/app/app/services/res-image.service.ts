@@ -21,7 +21,7 @@ export class ResImageService {
 
 
     /*
-    return this._http.post('url', toFormData(data));
+    return this._http.post('url', toFormData(sample_data));
       ;
     */
 

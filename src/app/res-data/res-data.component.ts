@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MatDialog} from '@angular/material';
 import {ImgDetailComponent} from '../components/img-detail/img-detail.component';
@@ -33,9 +33,13 @@ export class ResDataComponent implements OnInit {
         let base64Image = btoa(this.image);
         localStorage.setItem('image', base64Image);
       }
-      this.imageData.unshift({small:this.image, text:'Original'});
+      this.http.get('assets/sample_data/rdata.json').subscribe( val => {
+        this.imageData = val['data'];
+      })
+
     });
 
+/*
     this.imageData = [
       {
         small: 'https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/1-small.jpeg',
@@ -128,7 +132,9 @@ export class ResDataComponent implements OnInit {
         big: 'https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/5-big.jpeg'
       }
     ];
+*/
   }
+
   rdata: any;
   dispOriginalImage() {
     const dialorRef = this.matDialog.open( ImgDetailComponent, {
@@ -139,7 +145,7 @@ export class ResDataComponent implements OnInit {
     })
     dialorRef.afterClosed().subscribe((res) => {
       if( res.res === 'Y') {
-        console.log('data, filename', res.url, res.fileName);
+        console.log('sample_data, filename', res.url, res.fileName);
         this.saveFile( res.url, res.fileName);
       }
     })
@@ -154,7 +160,7 @@ export class ResDataComponent implements OnInit {
     })
     dialorRef.afterClosed().subscribe((res) => {
       if( res.res === 'Y') {
-        console.log('data, filename', res.url, res.fileName);
+        console.log('sample_data, filename', res.url, res.fileName);
         this.saveFile( res.url, res.fileName);
       }
     })
@@ -168,6 +174,6 @@ export class ResDataComponent implements OnInit {
     });
   }
   goHome() {
-    this.router.navigate(['/req-data']);
+    this.router.navigate(['/req-sample_data']);
   }
 }

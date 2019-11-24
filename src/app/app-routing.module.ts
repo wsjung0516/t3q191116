@@ -4,10 +4,10 @@ import {HomeComponent} from './home/home.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'req-data', pathMatch: 'full'},
-  { path: 'req-data',
+  { path: '', redirectTo: 'req-sample_data', pathMatch: 'full'},
+  { path: 'req-sample_data',
     loadChildren: () => import('./req-data/req-data.module').then( m => m.ReqDataModule)},
-  { path: 'res-data',
+  { path: 'res-sample_data',
     loadChildren: () => import('./res-data/res-data.module').then( m => m.ResDataModule)},
 ];
 

@@ -10,7 +10,7 @@ import {HttpClientModule} from '@angular/common/http';
 
 const route = [
   {path: '', component: ReqDataComponent},
-  {path: 'req-data', component: ReqDataComponent}
+  {path: 'req-sample_data', component: ReqDataComponent}
 ];
 
 @NgModule({
