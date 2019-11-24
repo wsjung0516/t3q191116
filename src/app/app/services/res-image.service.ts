@@ -1,14 +1,17 @@
 import { Injectable } from '@angular/core';
 import {interval, Observable, of} from "rxjs";
 import {delay, switchMap, take} from "rxjs/operators";
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ResImageService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
   postReqImage(data:any) : Observable<any> {
+    //const url = 'http://jsonplaceholder.typicode.com/posts';
+    const url = 'http://t3qlab.iptime.org:1810/action';
 /*
       return of().pipe(
         switchMap(() =>interval(2000)),
@@ -17,13 +20,11 @@ export class ResImageService {
         switchMap(() => of({res:201, title:'New Title'}))
       );
 */
-      return of({res:201, data:'New Title'}).pipe(delay(4000));
+     return of({res:201, data:'New Title'}).pipe(delay(4000));
 
 
-    /*
-    return this._http.post('url', toFormData(data));
-      ;
-    */
+     // return this.http.post(url, toFormData(data));
+
 
   }
 }

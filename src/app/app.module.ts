@@ -11,6 +11,7 @@ import { ReqDataComponent } from './req-data/req-data.component';
 import { ImgDetailComponent } from './components/img-detail/img-detail.component';
 import {ResDataComponent} from './res-data/res-data.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import {ReactiveFormsModule} from '@angular/forms';
     AngularMaterialModule,
     MatCardModule,
     ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   entryComponents: [

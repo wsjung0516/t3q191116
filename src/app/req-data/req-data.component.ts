@@ -62,11 +62,11 @@ export class ReqDataComponent implements OnInit{
       let width = this.angularCropper.cropper.getCroppedCanvas().width;
       console.log('this.corrpedImage, height, width', height, width);
       let data = {
-        img_name: 't3q',
+        imageName: 't3q',
         imageSize: (height/width),
-        imageType: 'jpeg',
+        imageType: 'RGB',
+        //imageEmb: this.croppedImage,
         imageEmb: this.modifyImage,
-        option: 'shape'
       };
       this.postData(data);
     }
@@ -77,7 +77,7 @@ export class ReqDataComponent implements OnInit{
 
     this._resImageService.postReqImage(data)
       .subscribe( (val) => {
-        console.log('resposne from t3q -->', val)
+        console.log('resposne from t3q -->', val);
         if( val.res === 200) {
           this.openSnackBar("접수 되었습니다. 잠시만 기다려 주세요!!",'');
         }
