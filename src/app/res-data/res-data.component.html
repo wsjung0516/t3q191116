@@ -14,7 +14,7 @@
 </div>
 -->
 <div class="respone-image">
-  <mat-grid-list cols="4" rowHeight="1:1" >
+  <mat-grid-list cols="3" rowHeight="1:1" >
     <mat-grid-tile *ngFor="let img of imageData;let i = index" (click)="dispImgDetail(img)">
       <img [src]="img.small">
       <div *ngIf="img.text">

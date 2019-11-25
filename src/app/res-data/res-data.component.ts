@@ -24,7 +24,8 @@ export class ResDataComponent implements OnInit {
 
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe( (val) => {
+    this.activatedRoute.queryParams.subscribe( (val) => {
+      console.log('res-->', val)
       if( !val.image ) {
         this.image = atob(localStorage.getItem('image'));
       } else {
@@ -32,10 +33,15 @@ export class ResDataComponent implements OnInit {
         //
         let base64Image = btoa(this.image);
         localStorage.setItem('image', base64Image);
+        let data = JSON.parse(val.data);
+        console.log('val.data->', data, val.data);
+        this.imageData = data;
       }
+/*
       this.http.get('assets/sample_data/rdata.json').subscribe( val => {
         this.imageData = val['data'];
       })
+*/
 
     });
 
@@ -174,6 +180,6 @@ export class ResDataComponent implements OnInit {
     });
   }
   goHome() {
-    this.router.navigate(['/req-sample_data']);
+    this.router.navigate(['/req-data']);
   }
 }

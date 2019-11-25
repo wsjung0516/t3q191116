@@ -26,6 +26,7 @@ export class ReqDataComponent implements OnInit{
   imgcontainer;
   radioValue: string;
   isProgress = false;
+  rData: any[] = [];
   constructor(private fb: FormBuilder,
               private changeDetectorRef: ChangeDetectorRef,
               private _snackBar: MatSnackBar,
@@ -46,7 +47,7 @@ export class ReqDataComponent implements OnInit{
   }
   goNextPage() {
     console.log('router is called');
-    this._router.navigate(['/res-sample_data']);
+    this._router.navigate(['/res-data']);
   }
 
   save()
@@ -60,9 +61,12 @@ export class ReqDataComponent implements OnInit{
       this.modifyImage = this.croppedImage.slice(23, this.croppedImage.length);
       let height = this.angularCropper.cropper.getCroppedCanvas().height;
       let width = this.angularCropper.cropper.getCroppedCanvas().width;
-      // console.log('this.corrpedImage, height, width', height, width);
+      // let name = this.angularCropper.cropper.getCroppedCanvas().title;
+      // var fullPath = document.getElementById("image_name")[0].files[0];
+      // var filename = fullPath.replace(/^.*[\\\/]/, '');
+      // console.log('this.corrpedImage, height, width', height, width, filename);
       let data = {
-        img_name: 't3q',
+        imageName: 't3q',
         imageSize: (height/width),
         imageType: 'jpeg',
         imageEmb: this.modifyImage,
@@ -75,16 +79,19 @@ export class ReqDataComponent implements OnInit{
     // this._resImageService.postReqImage( sample_data);
     this.isProgress = true;
 
+    this.openSnackBar("접수 되었습니다. 잠시만 기다려 주세요!!",'');
     this._resImageService.postReqImage(data)
       .subscribe( (val) => {
         console.log('resposne from t3q -->', val)
         if( val.res === 200) {
-          this.openSnackBar("접수 되었습니다. 잠시만 기다려 주세요!!",'');
         }
-        if( val.res === 201) {
+        if( val.response === 201) {
           this.isProgress = false;
           // this.rData = [...val];
           this.openSnackBar("데이터 처리가 완료 되었습니다.!!",'');
+          val.data.map( val => this.rData.push(val));
+          // this.rData = [...val.data];
+          // console.log('val', val, val.data, this.rData);
           this.moveToResPage();
         }
       });
@@ -111,7 +118,11 @@ export class ReqDataComponent implements OnInit{
   }
   moveToResPage() {
     this.isProgress = false;
-    this._router.navigate(['/res-sample_data', {image: this.croppedImage}]);
+    let params = {
+      data: JSON.stringify(this.rData),
+      image: this.croppedImage
+    };
+    this._router.navigate(['/res-data'], {queryParams: params});
   }
   reset()
   {
@@ -177,6 +188,7 @@ export class ReqDataComponent implements OnInit{
       var reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]); // read file as sample_data url
       reader.onload = (event) => { // called once readAsDataURL is completed
+        console.log('event-->',event, event.target);
         this.url = reader.result.toString();
 
       }

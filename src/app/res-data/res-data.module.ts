@@ -8,7 +8,7 @@ import {MatCardModule} from '@angular/material';
 
 const route = [
   {path: '', component: ResDataComponent},
-  {path: 'res-sample_data', component: ResDataComponent}
+  {path: 'res-data', component: ResDataComponent}
 ];
 
 @NgModule({

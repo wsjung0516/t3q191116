@@ -8,7 +8,7 @@
     <button type="button" mat-fab color="primary" (click)="imgFileInput.click()">
       <i class="fa fa-file-image-o fa-2x" aria-hidden="true"></i></button>
   </div>
-  <input hidden type="file" #imgFileInput (change)="onFileSelected($event)"/>
+  <input id="image_name" hidden type="file" #imgFileInput (change)="onFileSelected($event)"/>
   <div>
     <!--<div class="cropper-image" [style.background-image]="'url('+'../../assets/images/t3q2.png'+')'">-->
     <div class="cropper-image">

@@ -8,16 +8,13 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
     <div class="dialog-container">
         <mat-card class="width-card">
             <mat-card-header>
-                <mat-card-title>Title</mat-card-title>
+                <mat-card-title>{{data.title}}</mat-card-title>
             </mat-card-header>
             <div class="card_image">
                 <img class="card-img" [src]="data.big">
             </div>
             <mat-card-content>
-                <p>
-                    afdsfsdfsdfbfdsfefefeefdfdsfasfasdfsd
-                    afdsfsdfsdfbfdsfefefeefdfdsfasfasdfsd
-                    afdsfsdfsdfbfdsfefefeefdfdsfasfasdfsd
+                <p>{{data.description}}
                 </p>
             </mat-card-content>
             <!--
