@@ -1,6 +1,6 @@
 .res-contatiner {
   position: relative;
-  top: -20px;
+  top: 5px;
   z-index: 1;
 }
 .mat-radio-button {
@@ -13,6 +13,7 @@
   margin-left: 20px;
   bottom: 5px;
 }
+/*
 .mat-fab {
   position: relative;
   top: 0px;
@@ -20,16 +21,17 @@
   z-index: 200;
   background-color: green;
 }
+*/
 .button-group1 {
   position:relative;
-  top: -20px;
+  top: 15px;
   display: flex;
   justify-content: space-between;
 
 }
 .radio-button-group1 {
   position: relative;
-  top: -30px;
+  top: 5px;
   display: flex;
   justify-content: center;
 
@@ -42,7 +44,7 @@
 }
 .cropper-image {
   position: relative;
-  top:-20px;
+  top:10px;
   width: 100%;
   height: 440px;
   overflow: hidden;
@@ -52,7 +54,7 @@
 }
 .background-image {
   position: relative;
-  top:-440px;
+  top:-430px;
   width: 100%;
   height: 440px;
   overflow: hidden;
@@ -61,13 +63,22 @@
   background-repeat: no-repeat;
   z-index: 10;
 }
+/*
 .fab2 {
   position: relative;
   left: 20px;
   top: -10px;
   z-index: 100;
 }
+*/
 .progress-bar1 {
   position: relative;
-  top: -10px;
+  top: 18px;
+}
+.previous_page_button {
+  background-color: lightblue;
+}
+.image_upload_button {
+  background-color: green;
+
 }

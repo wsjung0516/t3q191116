@@ -1,12 +1,8 @@
-<div class="fab2">
-  <button mat-mini-fab color="primary" (click)="goNextPage()"><i class="fa fa-check fa-1x" aria-hidden="true"></i>
-  </button>
-</div>
 <div class="res-contatiner">
-
-  <div class="mat-fab1">
-    <button type="button" mat-fab color="primary" (click)="imgFileInput.click()">
-      <i class="fa fa-file-image-o fa-2x" aria-hidden="true"></i></button>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <button fxFlex="30%" class="previous_page_button" mat-raised-button color="basic" (click)="goNextPage()"> 검색결과</button>
+    <button fxFlex="65%" class="image_upload_button" mat-raised-button color="primary" (click)="imgFileInput.click()">
+      이미지업로드</button>
   </div>
   <input id="image_name" hidden type="file" #imgFileInput (change)="onFileSelected($event)"/>
   <div>

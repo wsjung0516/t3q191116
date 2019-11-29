@@ -14,18 +14,17 @@ import {ResImageService} from "../app/services/res-image.service";
 export class ReqDataComponent implements OnInit{
   @ViewChild('angularCropper', {static: false}) public angularCropper:CropperComponent;
   @ViewChild('result', {static: true}) public result:any;
+  // @ViewChild( CropperComponent, {static: false}) cropper: CropperComponent;
   cropperOptions:any;
   croppedImage=null;
   modifyImage=null;
-  myImg=null;
   scaleValX=1;
   scaleValY=1;
-  form
   selectedFile=null;
   url = null;
-  imgcontainer;
   radioValue: string;
   isProgress = false;
+  isCropping = false;
   rData: any[] = [];
   constructor(private fb: FormBuilder,
               private changeDetectorRef: ChangeDetectorRef,
@@ -34,11 +33,12 @@ export class ReqDataComponent implements OnInit{
               private _resImageService: ResImageService) {
     this.cropperOptions={
       dragMode:'crop',
-      autoCrop:true,
+      viewMode: 1,
+      autoCrop: false,
       movable:true,
       zoomable:true,
       scalable:true,
-      autoCropArea:1,
+      autoCropArea:0.9,
     };
   }
   ngOnInit() {
@@ -49,7 +49,13 @@ export class ReqDataComponent implements OnInit{
     console.log('router is called');
     this._router.navigate(['/res-data']);
   }
-
+/*
+  enableCropping() {
+    this.isCropping = !this.isCropping;
+    console.log('cropping -->', this.isCropping);
+    this.cropper.cropper.enable();
+  }
+*/
   save()
   {
     if(this.angularCropper){
@@ -95,16 +101,6 @@ export class ReqDataComponent implements OnInit{
           this.moveToResPage();
         }
       });
-
-    /**
-     질문 1: 데이터 전송 형식
-     {file: image, option: 1} 으로 FormData 에 담아서 Post 형식으로 보내면 되는지?
-     여기서 image는 base64로 변환된 것.
-     option 1: Concept, option 2: Shape 로 구분.
-
-     질문2: 상기 형식으로 서버에 보내면 서버에서는, 처음에 접수하고 접수 결과를 바로 보내주고,
-     그 다음에 이미지 데이터를 보내주는 지 확인 필요. 이때 클라이언트는 계속 기다리고 있으면 되는 건지.
-     * */
   }
   backgroundImage() {
     //return 'url('+'../../assets/images/t3q4.png'+')';

@@ -7,6 +7,7 @@ import {AngularCropperjsModule} from 'angular-cropperjs';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import {HttpClientModule} from '@angular/common/http';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 const route = [
   {path: '', component: ReqDataComponent},
@@ -25,7 +26,8 @@ const route = [
     RouterModule.forChild(route),
     AngularCropperjsModule,
     AngularFontAwesomeModule,
-    HttpClientModule
+    HttpClientModule,
+    FlexLayoutModule
   ]
 })
 export class ReqDataModule { }
