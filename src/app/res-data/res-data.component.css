@@ -23,8 +23,8 @@
 img {
 }
 mat-grid-tile {
-  background: green;
-  border: 1px solid black;
+  background: white;
+  border: 2px solid black;
   background-size: contain;
   /*background: #f5f5f5;*/
 }

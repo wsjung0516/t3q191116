@@ -17,13 +17,6 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
                 <p>{{data.description}}
                 </p>
             </mat-card-content>
-            <!--
-                      <form [formGroup]="iform" class="example-form">
-                          <mat-form-field class="example-full-width">
-                              <input matInput placeholder="저장할 파일 이름 입력." formControlName="filename"/>
-                          </mat-form-field>
-                      </form>
-            -->
             <mat-card-actions align="end">
                 <button mat-raised-button (click)="close()">취소</button>
                 <button mat-raised-button color="primary" (click)="save(data.title)">저장</button>

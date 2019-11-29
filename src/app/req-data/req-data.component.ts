@@ -88,15 +88,15 @@ export class ReqDataComponent implements OnInit{
     this.openSnackBar("접수 되었습니다. 잠시만 기다려 주세요!!",'');
     this._resImageService.postReqImage(data)
       .subscribe( (val) => {
-        console.log('resposne from t3q -->', val)
+        console.log('resposne from t3q -->', val);
         if( val.res === 200) {
         }
         if( val.response === 201) {
           this.isProgress = false;
           // this.rData = [...val];
           this.openSnackBar("데이터 처리가 완료 되었습니다.!!",'');
-          val.data.map( val => this.rData.push(val));
-          // this.rData = [...val.data];
+          //val.data.map( val => this.rData.push(val));
+          this.rData = val.data;
           // console.log('val', val, val.data, this.rData);
           this.moveToResPage();
         }

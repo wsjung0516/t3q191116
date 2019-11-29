@@ -29,14 +29,16 @@ export class ResDataComponent implements OnInit {
       //console.log('res-->', val)
       if( !val.image ) {
         this.image = atob(localStorage.getItem('image'));
+        this.imageData = JSON.parse(localStorage.getItem('imageData'));
       } else {
         this.image = val.image;
         //
         let base64Image = btoa(this.image);
         localStorage.setItem('image', base64Image);
         let data = JSON.parse(val.data);
-        console.log('val.data->', data, val.data);
+        // console.log('val.data->', data, val.data);
         this.imageData = data;
+        localStorage.setItem('imageData', JSON.stringify(this.imageData));
       }
 /*
       this.http.get('assets/sample_data/rdata.json').subscribe( val => {
@@ -48,7 +50,6 @@ export class ResDataComponent implements OnInit {
 
   }
 
-  rdata: any;
   dispOriginalImage() {
     const dialorRef = this.matDialog.open( ImgDetailComponent, {
       panelClass: 'myapp-no-padding-dialog',
