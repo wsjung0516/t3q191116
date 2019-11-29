@@ -1,101 +1,141 @@
 {
   "data": [
     {
+      "title": "title1",
+      "description": "abcdefghijklmnopqrstuvwxyz",
       "small": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/1-small.jpeg",
       "medium": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/1-mediupl.jpeg",
       "big": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/1-big.jpeg"
     },
     {
+      "title": "title2",
+      "description": "abcdefghijklmnopqrstuvwxyz",
       "small": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/2-small.jpeg",
       "medium": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/2-mediupl.jpeg",
       "big": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/2-big.jpeg"
     },
     {
+      "title": "title3",
+      "description": "abcdefghijklmnopqrstuvwxyz",
       "small": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/3-small.jpeg",
       "medium": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/3-mediupl.jpeg",
       "big": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/3-big.jpeg"
     },
     {
+      "title": "title4",
+      "description": "abcdefghijklmnopqrstuvwxyz",
       "small": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/4-small.jpeg",
       "medium": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/4-mediupl.jpeg",
       "big": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/4-big.jpeg"
     },
     {
+      "title": "title5",
+      "description": "abcdefghijklmnopqrstuvwxyz",
       "small": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/5-small.jpeg",
       "medium": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/5-mediupl.jpeg",
       "big": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/5-big.jpeg"
     },
     {
+      "title": "title6",
+      "description": "abcdefghijklmnopqrstuvwxyz",
       "small": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/1-small.jpeg",
       "medium": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/1-mediupl.jpeg",
       "big": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/1-big.jpeg"
     },
     {
+      "title": "title7",
+      "description": "abcdefghijklmnopqrstuvwxyz",
       "small": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/2-small.jpeg",
       "medium": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/2-mediupl.jpeg",
       "big": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/2-big.jpeg"
     },
     {
+      "title": "title8",
+      "description": "abcdefghijklmnopqrstuvwxyz",
       "small": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/3-small.jpeg",
       "medium": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/3-mediupl.jpeg",
       "big": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/3-big.jpeg"
     },
     {
+      "title": "title9",
+      "description": "abcdefghijklmnopqrstuvwxyz",
       "small": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/4-small.jpeg",
       "medium": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/4-mediupl.jpeg",
       "big": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/4-big.jpeg"
     },
     {
+      "title": "title10",
+      "description": "abcdefghijklmnopqrstuvwxyz",
       "small": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/5-small.jpeg",
       "medium": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/5-mediupl.jpeg",
       "big": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/5-big.jpeg"
     },
     {
+      "title": "title11",
+      "description": "abcdefghijklmnopqrstuvwxyz",
       "small": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/1-small.jpeg",
       "medium": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/1-mediupl.jpeg",
       "big": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/1-big.jpeg"
     },
     {
+      "title": "title12",
+      "description": "abcdefghijklmnopqrstuvwxyz",
       "small": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/2-small.jpeg",
       "medium": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/2-mediupl.jpeg",
       "big": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/2-big.jpeg"
     },
     {
+      "title": "title13",
+      "description": "abcdefghijklmnopqrstuvwxyz",
       "small": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/3-small.jpeg",
       "medium": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/3-mediupl.jpeg",
       "big": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/3-big.jpeg"
     },
     {
+      "title": "title14",
+      "description": "abcdefghijklmnopqrstuvwxyz",
       "small": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/4-small.jpeg",
       "medium": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/4-mediupl.jpeg",
       "big": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/4-big.jpeg"
     },
     {
+      "title": "title15",
+      "description": "abcdefghijklmnopqrstuvwxyz",
       "small": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/5-small.jpeg",
       "medium": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/5-mediupl.jpeg",
       "big": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/5-big.jpeg"
     },
     {
+      "title": "title16",
+      "description": "abcdefghijklmnopqrstuvwxyz",
       "small": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/1-small.jpeg",
       "medium": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/1-mediupl.jpeg",
       "big": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/1-big.jpeg"
     },
     {
+      "title": "title17",
+      "description": "abcdefghijklmnopqrstuvwxyz",
       "small": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/2-small.jpeg",
       "medium": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/2-mediupl.jpeg",
       "big": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/2-big.jpeg"
     },
     {
+      "title": "title18",
+      "description": "abcdefghijklmnopqrstuvwxyz",
       "small": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/3-small.jpeg",
       "medium": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/3-mediupl.jpeg",
       "big": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/3-big.jpeg"
     },
     {
+      "title": "title19",
+      "description": "abcdefghijklmnopqrstuvwxyz",
       "small": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/4-small.jpeg",
       "medium": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/4-mediupl.jpeg",
       "big": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/4-big.jpeg"
     },
     {
+      "title": "title20",
+      "description": "abcdefghijklmnopqrstuvwxyz",
       "small": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/5-small.jpeg",
       "medium": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/5-mediupl.jpeg",
       "big": "https://lukasz-galka.github.io/ngx-gallery-demo/assets/img/5-big.jpeg"

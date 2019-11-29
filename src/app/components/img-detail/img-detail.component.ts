@@ -26,7 +26,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
             -->
             <mat-card-actions align="end">
                 <button mat-raised-button (click)="close()">취소</button>
-                <button mat-raised-button color="primary" (click)="save()">저장</button>
+                <button mat-raised-button color="primary" (click)="save(data.title)">저장</button>
             </mat-card-actions>
         </mat-card>
 
@@ -39,10 +39,10 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
       }
       .card-img {
           display: flex;
-          justify-content: center; 
-          height: 250px; 
+          justify-content: center;
+          height: 250px;
           overflow: hidden
-          
+
       }
           .width-card {
               max-width: 270px;
@@ -53,7 +53,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
               background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
               background-size: cover;
           }
-    
+
     `
   ]
 })
@@ -72,13 +72,16 @@ export class ImgDetailComponent implements OnInit {
   close() {
     this.dialogRef.close({});
   }
-  save() {
+  save(title) {
+/*
     if( this.iform.invalid ) {
       window.alert('저장할 파일이름을 입력하세요!!');
       return;
     }
+*/
 
-    this.dialogRef.close({res: 'Y', url: this.data.big, fileName: this.iform.get('filename').value});
+    this.dialogRef.close({res: 'Y', url: this.data.big, fileName: title});
+    // this.dialogRef.close({res: 'Y', url: this.data.big, fileName: this.iform.get('filename').value});
   }
 
 }
