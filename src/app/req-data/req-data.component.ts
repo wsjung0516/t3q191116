@@ -43,7 +43,7 @@ export class ReqDataComponent implements OnInit{
   }
   ngOnInit() {
     this.changeDetectorRef.detectChanges();
-    this.radioValue = '1';
+    this.radioValue = '03';
   }
   goNextPage() {
     console.log('router is called');
@@ -76,7 +76,7 @@ export class ReqDataComponent implements OnInit{
         imageSize: (height/width),
         imageType: 'jpeg',
         imageEmb: this.modifyImage,
-        option: 'shape'
+        category: this.radioValue
       };
       this.postData(data);
     }
