@@ -18,11 +18,11 @@ export class ResImageService {
         switchMap(() => of({res:201, title:'New Title'}))
       );
 */
-     return of({response:201, data:'New Title'}).pipe(delay(4000));
+     // return of({response:201, data:'New Title'}).pipe(delay(4000));
 
 
 
-    //return this.http.post( this.url, toFormData(data));
+    return this.http.post( this.url, toFormData(data));
 
   }
 }

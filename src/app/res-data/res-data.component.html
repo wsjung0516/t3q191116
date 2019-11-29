@@ -6,13 +6,6 @@
      <img class="card-img" [src]="image" (click)="dispOriginalImage()">
   </div>
 </div>
-<!--
-<div style="position:relative; top: 10px">
-  <button mat-raised-button (click)="dispOriginalImage()">Original Image</button>
-</div>
-<div class="response-title">
-</div>
--->
 <div class="respone-image">
   <mat-grid-list cols="3" rowHeight="1:1" >
     <mat-grid-tile *ngFor="let img of imageData;let i = index" (click)="dispImgDetail(img)">
