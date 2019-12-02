@@ -3,31 +3,9 @@
   top: 5px;
   z-index: 1;
 }
-.mat-radio-button {
+.progress-bar1 {
   position: relative;
-  margin-right: 10px;
-  margin-top: 25px
-}
-.request-button {
-  position: relative;
-  margin-left: 20px;
-  bottom: 5px;
-}
-/*
-.mat-fab {
-  position: relative;
-  top: 0px;
-  left: 42%;
-  z-index: 200;
-  background-color: green;
-}
-*/
-.button-group1 {
-  position:relative;
-  top: 15px;
-  display: flex;
-  justify-content: space-between;
-
+  top: 18px;
 }
 .radio-button-group1 {
   position: relative;
@@ -42,15 +20,16 @@
   background-color: green;
   color: white;
 }
-.cropper-image {
+
+.mat-radio-button {
   position: relative;
-  top:10px;
-  width: 100%;
-  height: 440px;
-  overflow: hidden;
-  background-size: contain;
-  background-repeat: no-repeat;
-  z-index: 10;
+  margin-right: 10px;
+  margin-top: 25px
+}
+.request-button {
+  position: relative;
+  margin-left: 20px;
+  bottom: 5px;
 }
 .background-image {
   position: relative;
@@ -63,22 +42,13 @@
   background-repeat: no-repeat;
   z-index: 10;
 }
+
 /*
-.fab2 {
+.mat-fab {
   position: relative;
-  left: 20px;
-  top: -10px;
-  z-index: 100;
+  top: 0px;
+  left: 42%;
+  z-index: 200;
+  background-color: green;
 }
 */
-.progress-bar1 {
-  position: relative;
-  top: 18px;
-}
-.previous_page_button {
-  background-color: lightblue;
-}
-.image_upload_button {
-  background-color: green;
-
-}

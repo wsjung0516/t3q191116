@@ -12,6 +12,11 @@ import { ImgDetailComponent } from './components/img-detail/img-detail.component
 import {ResDataComponent} from './res-data/res-data.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import {NgxsModule} from "@ngxs/store";
+import {NgxsStoragePluginModule} from "@ngxs/storage-plugin";
+import {NgxsRouterPluginModule} from "@ngxs/router-plugin";
+import {NgxsReduxDevtoolsPluginModule} from "@ngxs/devtools-plugin";
+import {NgxsLoggerPluginModule} from "@ngxs/logger-plugin";
 
 @NgModule({
   declarations: [
@@ -26,7 +31,12 @@ import {HttpClientModule} from '@angular/common/http';
     AngularMaterialModule,
     MatCardModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxsModule.forRoot(),
+    NgxsStoragePluginModule.forRoot(),
+    NgxsRouterPluginModule.forRoot(),
+    NgxsReduxDevtoolsPluginModule.forRoot(),
+    NgxsLoggerPluginModule.forRoot()
   ],
   providers: [],
   entryComponents: [

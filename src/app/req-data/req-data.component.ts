@@ -1,10 +1,10 @@
 import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
-import {FormBuilder} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {CropperComponent } from 'angular-cropperjs';
 import {MatSnackBar} from '@angular/material';
 import {Router} from '@angular/router';
 import {HttpClient} from "@angular/common/http";
-import {ResImageService} from "../app/services/res-image.service";
+import {ResImageService} from "../services/res-image.service";
 
 @Component({
   selector: 'cropper',
@@ -12,38 +12,36 @@ import {ResImageService} from "../app/services/res-image.service";
   styleUrls: ['./req-data.component.css']
 })
 export class ReqDataComponent implements OnInit{
-  @ViewChild('angularCropper', {static: false}) public angularCropper:CropperComponent;
+  // @ViewChild('angularCropper', {static: false}) public angularCropper:CropperComponent;
   @ViewChild('result', {static: true}) public result:any;
   // @ViewChild( CropperComponent, {static: false}) cropper: CropperComponent;
-  cropperOptions:any;
   croppedImage=null;
   modifyImage=null;
-  scaleValX=1;
-  scaleValY=1;
-  selectedFile=null;
-  url = null;
   radioValue: string;
   isProgress = false;
   isCropping = false;
   rData: any[] = [];
+  iform = FormGroup;
+  // croppedImageData: FormControl;
+  croppedData : CropperComponent;
+  croppedImageData = new FormControl('');
   constructor(private fb: FormBuilder,
               private changeDetectorRef: ChangeDetectorRef,
               private _snackBar: MatSnackBar,
               private _router: Router,
-              private _resImageService: ResImageService) {
-    this.cropperOptions={
-      dragMode:'crop',
-      viewMode: 1,
-      autoCrop: false,
-      movable:true,
-      zoomable:true,
-      scalable:true,
-      autoCropArea:0.9,
-    };
+              private _resImageService: ResImageService,
+              ) {
   }
   ngOnInit() {
     this.changeDetectorRef.detectChanges();
     this.radioValue = '03';
+    this.croppedImageData.valueChanges.subscribe(value => console.log('value->', value));
+    // @ts-ignore
+    // this.iform = this.fb.group({
+    //   croppedImageData: ['', Validators.required]
+    // })
+    // this.angularCropper = this.croppedImageData;
+
   }
   goNextPage() {
     console.log('router is called');
@@ -58,15 +56,18 @@ export class ReqDataComponent implements OnInit{
 */
   save()
   {
-    if(this.angularCropper){
-      this.croppedImage = this.angularCropper
+    // this.angularCropper = this.iform.get('croppedImageData').value;
+    // if(this.angularCropper){
+    if(this.croppedImageData){
+      this.croppedData = this.croppedImageData.value;
+      this.croppedImage = this.croppedData
         .cropper.getCroppedCanvas()
         .toDataURL('image/jpeg', (100/100));
       // (document.getElementById("myimg") as HTMLImageElement).src=this.croppedImage;
      // let idx = this.croppedImage.find(',');
       this.modifyImage = this.croppedImage.slice(23, this.croppedImage.length);
-      let height = this.angularCropper.cropper.getCroppedCanvas().height;
-      let width = this.angularCropper.cropper.getCroppedCanvas().width;
+      let height = this.croppedData.cropper.getCroppedCanvas().height;
+      let width = this.croppedData.cropper.getCroppedCanvas().width;
       // let name = this.angularCropper.cropper.getCroppedCanvas().title;
       // var fullPath = document.getElementById("image_name")[0].files[0];
       // var filename = fullPath.replace(/^.*[\\\/]/, '');
@@ -120,75 +121,6 @@ export class ReqDataComponent implements OnInit{
     };
     this._router.navigate(['/res-data'], {queryParams: params});
   }
-  reset()
-  {
-    if(this.angularCropper)
-      this.angularCropper.cropper.reset();
-  }
-  clear(){
-    if(this.angularCropper)
-      this.angularCropper.cropper.clear();
-  }
-  rotate(){
-    console.log('rotate', this.angularCropper);
-    if(this.angularCropper)
-      this.angularCropper.cropper.rotate(90);
-  }
-  rotateright(){
-    if(this.angularCropper)
-      this.angularCropper.cropper.rotate(-90);
-  }
-  zoom(zoomIn:boolean)
-  {
-    if(this.angularCropper)
-    {
-      let factor=zoomIn?0.1:-0.1;
-      this.angularCropper.cropper.zoom(factor);
-    }
-  }
-  scaleX(){
-    if(this.angularCropper){
-      this.scaleValX=this.scaleValX*-1;
-      this.angularCropper.cropper.scaleX(this.scaleValX);
-    }
-  }
-  scaleY(){
-    if(this.angularCropper){
-      this.scaleValY=this.scaleValY*-1;
-      this.angularCropper.cropper.scaleY(this.scaleValY);
-    }
-  }
-  move(x,y){
-    if(this.angularCropper)
-      this.angularCropper.cropper.move(x,y);
-  }
-  destroy()
-  {
-    if(this.angularCropper)
-      this.url=null;
-    //this.angularCropper.cropper.destroy();;
-  }
-  close(){
-    this.url=null;
-    (document.getElementById("myimg") as HTMLImageElement).src=null;
-  }
-  onFileSelected(event)
-  {
-    if(this.angularCropper)
-    {
-      this.destroy();
-    }
-    // console.log(this.imgcontainer);
-    if (event.target.files && event.target.files[0]) {
-      this.selectedFile=event.target.files[0];
-      var reader = new FileReader();
-      reader.readAsDataURL(event.target.files[0]); // read file as sample_data url
-      reader.onload = (event) => { // called once readAsDataURL is completed
-        console.log('event-->',event, event.target);
-        this.url = reader.result.toString();
 
-      }
-    }
-  }
 }
 
