@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, HostListener, OnInit, Output, ViewChild} from '@angular/core';
 import {CropperComponent } from 'angular-cropperjs';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
 
@@ -60,7 +60,7 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
     multi: true
   }]
 })
-export class ImageCropperComponent implements ControlValueAccessor, AfterViewInit {
+export class ImageCropperComponent implements ControlValueAccessor {
   @ViewChild('angularCropper', {static: false}) public angularCropper:CropperComponent;
   selectedFile=null;
   scaleValX=1;
@@ -71,6 +71,12 @@ export class ImageCropperComponent implements ControlValueAccessor, AfterViewIni
   value;
   @Output() cropped = new EventEmitter();
   @Output() nextPage = new EventEmitter();
+  @HostListener('change', ['$event.target.files']) emitFiles( event: FileList ) {
+    const file = event && event.item(0);
+    // this.onChange(file);
+    this.onChange(setTimeout(()=>this.angularCropper),500);
+    // this.file = file;
+  }
 
   constructor() {
     this.cropperOptions={
@@ -82,9 +88,6 @@ export class ImageCropperComponent implements ControlValueAccessor, AfterViewIni
       scalable:true,
       autoCropArea:0.9,
     };
-  }
-  ngAfterViewInit() {
-    this.onChange(setTimeout(() => this.angularCropper),100);
   }
   reset()
   {

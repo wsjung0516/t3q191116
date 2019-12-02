@@ -12,9 +12,7 @@ import {ResImageService} from "../services/res-image.service";
   styleUrls: ['./req-data.component.css']
 })
 export class ReqDataComponent implements OnInit{
-  // @ViewChild('angularCropper', {static: false}) public angularCropper:CropperComponent;
   @ViewChild('result', {static: true}) public result:any;
-  // @ViewChild( CropperComponent, {static: false}) cropper: CropperComponent;
   croppedImage=null;
   modifyImage=null;
   radioValue: string;
@@ -36,12 +34,6 @@ export class ReqDataComponent implements OnInit{
     this.changeDetectorRef.detectChanges();
     this.radioValue = '03';
     this.croppedImageData.valueChanges.subscribe(value => console.log('value->', value));
-    // @ts-ignore
-    // this.iform = this.fb.group({
-    //   croppedImageData: ['', Validators.required]
-    // })
-    // this.angularCropper = this.croppedImageData;
-
   }
   goNextPage() {
     console.log('router is called');
