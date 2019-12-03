@@ -1,4 +1,10 @@
-import {AfterViewInit, Component, EventEmitter, HostListener, OnInit, Output, ViewChild} from '@angular/core';
+import {
+  Component, DoCheck,
+  EventEmitter,
+  OnInit,
+  Output,
+  ViewChild
+} from '@angular/core';
 import {CropperComponent } from 'angular-cropperjs';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
 
@@ -60,23 +66,14 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
     multi: true
   }]
 })
-export class ImageCropperComponent implements ControlValueAccessor {
+export class ImageCropperComponent implements ControlValueAccessor, OnInit, DoCheck {
   @ViewChild('angularCropper', {static: false}) public angularCropper:CropperComponent;
   selectedFile=null;
-  scaleValX=1;
-  scaleValY=1;
   url = null;
   cropperOptions:any;
   onChange;
-  value;
-  @Output() cropped = new EventEmitter();
+  isCropped = false;
   @Output() nextPage = new EventEmitter();
-  @HostListener('change', ['$event.target.files']) emitFiles( event: FileList ) {
-    const file = event && event.item(0);
-    // this.onChange(file);
-    this.onChange(setTimeout(()=>this.angularCropper),500);
-    // this.file = file;
-  }
 
   constructor() {
     this.cropperOptions={
@@ -89,15 +86,21 @@ export class ImageCropperComponent implements ControlValueAccessor {
       autoCropArea:0.9,
     };
   }
-  reset()
-  {
-    if(this.angularCropper)
-      this.angularCropper.cropper.reset();
+  ngDoCheck(): void {
+    if(this.angularCropper &&
+      this.angularCropper.cropper.getCroppedCanvas() &&
+      this.angularCropper.cropper.getCroppedCanvas().height && !this.isCropped  ) {
+      this.isCropped = true;
+      this.makeCroppedImage().then((data) => {
+        // console.log('makeCroppedImage is called', data);
+        this.onChange( data )
+      });
+    }
   }
-  clear(){
-    if(this.angularCropper)
-      this.angularCropper.cropper.clear();
+
+  ngOnInit(): void {
   }
+
   rotate(){
     console.log('rotate', this.angularCropper);
     if(this.angularCropper)
@@ -115,26 +118,6 @@ export class ImageCropperComponent implements ControlValueAccessor {
       this.angularCropper.cropper.zoom(factor);
     }
   }
-  scaleX(){
-    if(this.angularCropper){
-      this.scaleValX=this.scaleValX*-1;
-      this.angularCropper.cropper.scaleX(this.scaleValX);
-    }
-  }
-  scaleY(){
-    if(this.angularCropper){
-      this.scaleValY=this.scaleValY*-1;
-      this.angularCropper.cropper.scaleY(this.scaleValY);
-    }
-  }
-  move(x,y){
-    if(this.angularCropper)
-      this.angularCropper.cropper.move(x,y);
-  }
-  close(){
-    this.url=null;
-    (document.getElementById("myimg") as HTMLImageElement).src=null;
-  }
   destroy()
   {
     if(this.angularCropper)
@@ -149,6 +132,7 @@ export class ImageCropperComponent implements ControlValueAccessor {
       this.destroy();
     }
     // console.log(this.imgcontainer);
+    this.isCropped = false; /** To prevent duplicated calling "makeCroppedImage"*/
     if (event.target.files && event.target.files[0]) {
       this.selectedFile=event.target.files[0];
       const reader = new FileReader();
@@ -156,11 +140,24 @@ export class ImageCropperComponent implements ControlValueAccessor {
       reader.onload = (event) => { // called once readAsDataURL is completed
         // console.log('event-->',event, event.target);
         this.url = reader.result.toString();
-
+        // setTimeout(() => this.makeCroppedImage(),200);
       }
     }
   }
-
+  makeCroppedImage() {
+    return new Promise( resolve => {
+      let croppedImage;
+      let height, width;
+      if(this.angularCropper) {
+        height = this.angularCropper.cropper.getCroppedCanvas().height;
+        width = this.angularCropper.cropper.getCroppedCanvas().width;
+        croppedImage = this.angularCropper
+          .cropper.getCroppedCanvas()
+          .toDataURL('image/jpeg', (100 / 100));
+        resolve({image: croppedImage, height, width})
+      }
+    })
+  }
   registerOnChange(fn: any): void {
     this.onChange = fn;
   }
@@ -169,7 +166,7 @@ export class ImageCropperComponent implements ControlValueAccessor {
   }
 
   writeValue(obj: any): void {
-    console.log('writeValue', obj);
+    // console.log('writeValue', obj);
   }
 
 }
