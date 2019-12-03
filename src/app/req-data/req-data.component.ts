@@ -3,9 +3,11 @@ import {FormBuilder, FormControl} from '@angular/forms';
 import {MatSnackBar} from '@angular/material';
 import {Router} from '@angular/router';
 import {ResImageService} from "../services/res-image.service";
-import {Store} from "@ngxs/store";
-import {SaveCroppedImage, StartAnalyze} from "./store/req-data.actions";
+import {Select, Store} from '@ngxs/store';
+import {ResetState, SaveCroppedImage, StartAnalyze} from './store/req-data.actions';
 import {Navigate} from "@ngxs/router-plugin";
+import {ReqDataState, ReqDataStateModel} from './store/req-data.state';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'cropper',
@@ -18,10 +20,12 @@ export class ReqDataComponent implements OnInit{
   modifyImage=null;
   radioValue: string;
   isProgress = false;
-  rData: any[] = [];
   croppedImageData = new FormControl('');
   height;
   width;
+  @Select(ReqDataState.getLoaded) loaded$: Observable<ReqDataStateModel>;
+  @Select(ReqDataState.getLoading) loading$: Observable<ReqDataStateModel>;
+  @Select(ReqDataState.getCropImage) cropImage$: Observable<ReqDataStateModel>;
   constructor(private fb: FormBuilder,
               private changeDetectorRef: ChangeDetectorRef,
               private _snackBar: MatSnackBar,
@@ -33,6 +37,7 @@ export class ReqDataComponent implements OnInit{
   ngOnInit() {
     this.changeDetectorRef.detectChanges();
     this.radioValue = '03';
+    this.store.dispatch(new ResetState());
     this.croppedImageData.valueChanges.subscribe(value => {
       // console.log('value->', value)
       // this.croppedImage = value.image;
@@ -52,8 +57,8 @@ export class ReqDataComponent implements OnInit{
   }
   save()
   {
-    if(this.croppedImageData){
-      this.modifyImage = this.croppedImage.slice(23, this.croppedImage.length);
+    this.cropImage$.subscribe( res => {
+      this.modifyImage = res.cropImage.image.slice(23, res.cropImage.image.length);
       let data = {
         imageName: 't3q',
         imageSize: (this.height/this.width),
@@ -63,8 +68,7 @@ export class ReqDataComponent implements OnInit{
       };
       this.openSnackBar("접수 되었습니다. 잠시만 기다려 주세요!!",'');
       this.store.dispatch( new StartAnalyze(data));
-      // this._resImageService.postReqImage(data);
-    }
+    });
   }
   openSnackBar(message: string, action: string) {
     this.isProgress = true;

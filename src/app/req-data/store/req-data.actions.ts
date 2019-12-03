@@ -6,6 +6,9 @@ export class SaveCroppedImage {
   public static readonly type = '[ReqData] Save Cropped Image';
   constructor(public payload: any) {}
 }
+export class ResetState {
+  public static readonly type = '[ReqData] Reset Cropped Image';
+}
 export class StartAnalyze {
   public static readonly type = '[ReqData] Start Analyze';
   constructor(public payload: any) {}

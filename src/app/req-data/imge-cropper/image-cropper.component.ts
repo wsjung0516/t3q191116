@@ -73,6 +73,8 @@ export class ImageCropperComponent implements ControlValueAccessor, OnInit, DoCh
   cropperOptions:any;
   onChange;
   isCropped = false;
+  height;
+  width;
   @Output() nextPage = new EventEmitter();
 
   constructor() {
@@ -89,8 +91,14 @@ export class ImageCropperComponent implements ControlValueAccessor, OnInit, DoCh
   ngDoCheck(): void {
     if(this.angularCropper &&
       this.angularCropper.cropper.getCroppedCanvas() &&
-      this.angularCropper.cropper.getCroppedCanvas().height && !this.isCropped  ) {
+      (this.angularCropper.cropper.getCroppedCanvas().height !== this.height ||
+      this.angularCropper.cropper.getCroppedCanvas().width !== this.width)
+      && !this.isCropped  ) {
+      //
       this.isCropped = true;
+      this.height = this.angularCropper.cropper.getCroppedCanvas().height;
+      this.width = this.angularCropper.cropper.getCroppedCanvas().width;
+      //
       this.makeCroppedImage().then((data) => {
         // console.log('makeCroppedImage is called', data);
         this.onChange( data )

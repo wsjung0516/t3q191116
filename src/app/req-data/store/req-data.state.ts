@@ -1,5 +1,5 @@
 import { State, Action, Selector, StateContext } from '@ngxs/store';
-import {StartAnalyze, CompleteAnalyzing, ErrorAnalyzing, ReqDataAction, SaveCroppedImage} from './req-data.actions';
+import {StartAnalyze, CompleteAnalyzing, ErrorAnalyzing, ReqDataAction, SaveCroppedImage, ResetState} from './req-data.actions';
 import {ResImageService} from "../../services/res-image.service";
 import {catchError, map} from "rxjs/operators";
 import {Navigate} from "@ngxs/router-plugin";
@@ -54,10 +54,14 @@ export class ReqDataState {
     return state.error;
   }
 
+  @Action(ResetState)
+  public resetState({setState}: StateContext<ReqDataStateModel>, action: ResetState) {
+    setState(CropDefaultState);
+  }
   @Action(SaveCroppedImage)
   public saveCroppedImage({dispatch, patchState}: StateContext<ReqDataStateModel>, {payload }: SaveCroppedImage) {
     patchState({
-      loaded: false,
+      loaded: true,
       loading: false,
       cropImage: payload,
     });
@@ -65,7 +69,7 @@ export class ReqDataState {
   @Action(StartAnalyze)
   public startAnalyze({dispatch, patchState}: StateContext<ReqDataStateModel>, {payload }: StartAnalyze) {
     patchState({
-      loaded: false,
+      loaded: true,
       loading: true
     });
     return this.resImageService.postReqImage(payload).pipe(
