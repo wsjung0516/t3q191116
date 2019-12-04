@@ -89,18 +89,17 @@ export class ImageCropperComponent implements ControlValueAccessor, OnInit, DoCh
     };
   }
   ngDoCheck(): void {
+
     if(this.angularCropper &&
-      this.angularCropper.cropper.getCroppedCanvas() &&
+      this.angularCropper.cropper &&
       (this.angularCropper.cropper.getCroppedCanvas().height !== this.height ||
       this.angularCropper.cropper.getCroppedCanvas().width !== this.width)
-      && !this.isCropped  ) {
+      /*&& !this.isCropped*/  ) {
       //
-      this.isCropped = true;
       this.height = this.angularCropper.cropper.getCroppedCanvas().height;
       this.width = this.angularCropper.cropper.getCroppedCanvas().width;
       //
       this.makeCroppedImage().then((data) => {
-        // console.log('makeCroppedImage is called', data);
         this.onChange( data )
       });
     }
@@ -155,14 +154,12 @@ export class ImageCropperComponent implements ControlValueAccessor, OnInit, DoCh
   makeCroppedImage() {
     return new Promise( resolve => {
       let croppedImage;
-      let height, width;
       if(this.angularCropper) {
-        height = this.angularCropper.cropper.getCroppedCanvas().height;
-        width = this.angularCropper.cropper.getCroppedCanvas().width;
         croppedImage = this.angularCropper
           .cropper.getCroppedCanvas()
           .toDataURL('image/jpeg', (100 / 100));
-        resolve({image: croppedImage, height, width})
+        resolve({image: croppedImage, height: this.height, width: this.width})
+        // resolve({image: croppedImage, height, width})
       }
     })
   }
