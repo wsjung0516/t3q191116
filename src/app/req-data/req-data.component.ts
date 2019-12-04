@@ -60,7 +60,17 @@ export class ReqDataComponent implements OnInit{
   {
     if(this.angularCropper){
       this.croppedImage = this.angularCropper
-        .cropper.getCroppedCanvas()
+        .cropper.getCroppedCanvas({
+          width: 90,
+          height: 90,
+          minWidth: 256,
+          minHeight: 256,
+          maxWidth: 4096,
+          maxHeight: 4096,
+          fillColor: '#fff',
+          imageSmoothingEnabled: false,
+          imageSmoothingQuality: 'high',
+        })
         .toDataURL('image/jpeg', (100/100));
       // (document.getElementById("myimg") as HTMLImageElement).src=this.croppedImage;
      // let idx = this.croppedImage.find(',');
@@ -76,7 +86,7 @@ export class ReqDataComponent implements OnInit{
         imageSize: (height/width),
         imageType: 'jpeg',
         imageEmb: this.modifyImage,
-        category: this.radioValue
+        imageCate: this.radioValue
       };
       this.postData(data);
     }
