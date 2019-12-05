@@ -59,7 +59,7 @@ export class ReqDataComponent implements OnInit, OnDestroy {
         imageSize: (res['height']/res['width']),
         imageType: 'jpeg',
         imageEmb: this.modifyImage,
-        category: this.radioValue
+        imageCate: this.radioValue
       };
       this.openSnackBar("접수 되었습니다. 잠시만 기다려 주세요!!",'Waiting !');
       this.store.dispatch( new StartAnalyze(data));

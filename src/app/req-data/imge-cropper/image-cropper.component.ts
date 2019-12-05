@@ -12,13 +12,14 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
   selector: 'app-image-cropper',
   template: `
     <div fxLayout="row" fxLayoutAlign="space-between center">
-      <button fxFlex="30%" class="previous_page_button" mat-raised-button color="basic" (click)="nextPage.emit()"> 검색결과</button>
-      <button fxFlex="65%" class="image_upload_button" mat-raised-button color="primary" (click)="imgFileInput.click()">
+      <button fxFlex="25%" class="previous_page_button" mat-raised-button color="basic" (click)="nextPage.emit()"> 검색결과</button>
+      <button fxFlex="40%" class="image_upload_button" mat-raised-button color="primary" (click)="imgFileInput.click()">
         이미지업로드</button>
+      <mat-slide-toggle fxFlex="30%" color="primary" [checked]="isToggled">클롭핑</mat-slide-toggle>
     </div>
     <input id="image_name" hidden type="file" #imgFileInput (change)="onFileSelected($event)"/>
     <div>
-      <div class="cropper-image">
+      <div class="cropper-image" *ngIf="!isToggled">
         <angular-cropper #angularCropper [cropperOptions]="cropperOptions" [imageUrl]="url" *ngIf="url"></angular-cropper>
       </div>
       <div class="button-group1" *ngIf="!!angularCropper">
@@ -73,6 +74,7 @@ export class ImageCropperComponent implements ControlValueAccessor, OnInit, DoCh
   cropperOptions:any;
   onChange;
   isCropped = false;
+  isToggled = false;
   height;
   width;
   @Output() nextPage = new EventEmitter();
@@ -141,11 +143,12 @@ export class ImageCropperComponent implements ControlValueAccessor, OnInit, DoCh
     // console.log(this.imgcontainer);
     this.isCropped = false; /** To prevent duplicated calling "makeCroppedImage"*/
     if (event.target.files && event.target.files[0]) {
-      this.selectedFile=event.target.files[0];
+      // this.selectedFile=event.target.files[0];
       const reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]); // read file as sample_data url
       reader.onload = (event) => { // called once readAsDataURL is completed
         // console.log('event-->',event, event.target);
+        this.selectedFile = reader.result;
         this.url = reader.result.toString();
         // setTimeout(() => this.makeCroppedImage(),200);
       }
@@ -154,12 +157,15 @@ export class ImageCropperComponent implements ControlValueAccessor, OnInit, DoCh
   makeCroppedImage() {
     return new Promise( resolve => {
       let croppedImage;
-      if(this.angularCropper) {
+      if(this.angularCropper && !this.isToggled) {
         croppedImage = this.angularCropper
           .cropper.getCroppedCanvas()
           .toDataURL('image/jpeg', (100 / 100));
-        resolve({image: croppedImage, height: this.height, width: this.width})
+           resolve({image: croppedImage, height: this.height, width: this.width})
         // resolve({image: croppedImage, height, width})
+      } else if( this.isToggled) {
+        // console.log('this.selectedFile', this.selectedFile);
+        resolve({image: this.selectedFile, height: this.height, width: this.width})
       }
     })
   }
