@@ -56,7 +56,7 @@ export class ReqDataComponent implements OnInit, OnDestroy {
       this.modifyImage = res['image'].slice(23, res['image'].length);
       let data = {
         imageName: 't3q',
-        imageSize: (this.height/this.width),
+        imageSize: (res['height']/res['width']),
         imageType: 'jpeg',
         imageEmb: this.modifyImage,
         category: this.radioValue
