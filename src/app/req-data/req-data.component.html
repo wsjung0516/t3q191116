@@ -1,39 +1,17 @@
 <div class="res-contatiner">
-  <div fxLayout="row" fxLayoutAlign="space-between center">
-    <button fxFlex="30%" class="previous_page_button" mat-raised-button color="basic" (click)="goNextPage()"> 검색결과</button>
-    <button fxFlex="65%" class="image_upload_button" mat-raised-button color="primary" (click)="imgFileInput.click()">
-      이미지업로드</button>
-  </div>
-  <input id="image_name" hidden type="file" #imgFileInput (change)="onFileSelected($event)"/>
-  <div>
-    <!--<div class="cropper-image" [style.background-image]="'url('+'../../assets/images/t3q2.png'+')'">-->
-    <div class="cropper-image">
-      <angular-cropper #angularCropper [cropperOptions]="cropperOptions" [imageUrl]="url" *ngIf="url"></angular-cropper>
-    </div>
-    <div class="button-group1" *ngIf="!!angularCropper">
-      <button mat-raised-button color="primary" (click)="zoom(true)"><i class="fa fa-search-plus fa-lg"></i></button>
-      <button mat-stroked-button color="primary" (click)="zoom(false)"><i class="fa fa-search-minus fa-lg"></i></button>
-      <!--<button mat-stroked-button color="warn" (click)="save()"><i class="fa fa-crop fa-lg"></i></button>-->
-      <button mat-stroked-button color="primary" (click)="rotate()"><i class="fa fa-rotate-left fa-lg"></i></button>
-      <button mat-stroked-button color="primary" (click)="rotateright()"><i class="fa fa-rotate-right fa-lg"></i>
-      </button>
-      <!--
-      <button mat-stroked-button color="primary" (click)="scaleX()"><i class="fa fa-picture-o fa-flip-horizontal fa-lg"></i></button>
-      <button mat-stroked-button color="primary" (click)=" scaleY()"><i class="fa fa-picture-o fa-flip-vertical fa-lg"></i></button>
-      -->
-      <button mat-stroked-button color="accent" (click)="destroy()"><i class="fa fa-window-close  fa-lg"></i></button>
-    </div>
-    <mat-progress-bar class="progress-bar1"mode="indeterminate" *ngIf="isProgress"></mat-progress-bar>
-    <div class="radio-button-group1" *ngIf="!!angularCropper">
+    <app-image-cropper (nextPage)="goNextPage()" [formControl]="croppedImageData"></app-image-cropper>
+    <mat-progress-bar class="progress-bar1" mode="indeterminate" *ngIf="loading$ | async"></mat-progress-bar>
+<!--    <div class="radio-button-group1" >-->
+    <div class="radio-button-group1" *ngIf="loaded$ | async">
       <mat-radio-group aria-label="Select an option" [ngModel]="radioValue">
         <mat-radio-button value="03">동물</mat-radio-button>
         <mat-radio-button value="05">식물</mat-radio-button>
       </mat-radio-group>
       <span class="request-button">
-    <button class="mat-raised-button2" mat-raised-button (click)="save()">검색시작</button>
-  </span>
+        <button class="mat-raised-button2" mat-raised-button (click)="save()">검색시작</button>
+     </span>
     </div>
-  </div>
-  <div *ngIf="!angularCropper" class="background-image"></div>
+  <div *ngIf="!(loaded$ | async)" class="background-image"></div>
 
 </div>
+

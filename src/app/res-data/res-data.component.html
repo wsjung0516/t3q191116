@@ -3,16 +3,13 @@
 </div>
 <div class="request-image">
   <div class="card" style="height: 130px">
-     <img class="card-img" [src]="image" (click)="dispOriginalImage()">
+     <img class="card-img" [src]="(cropImage$ | async)['image']" (click)="dispOriginalImage($event)">
   </div>
 </div>
 <div class="respone-image">
   <mat-grid-list cols="4" rowHeight="1:1" >
-    <mat-grid-tile *ngFor="let img of imageData;let i = index" (click)="dispImgDetail(img)">
-      <img [src]="img.small" style="max-width: 100%; height:auto;">
-      <div *ngIf="img.text">
-        {{img.text}}
-      </div>
+    <mat-grid-tile *ngFor="let img of (resultImage$ | async)['images'];let i = index" (click)="dispImgDetail(img)">
+      <img [src]="img.small">
     </mat-grid-tile>
   </mat-grid-list>
 </div>

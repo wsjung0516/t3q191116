@@ -8,6 +8,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import {HttpClientModule} from '@angular/common/http';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import { ImageCropperComponent } from './imge-cropper/image-cropper.component';
+import {NgxsModule} from '@ngxs/store';
+import {ReqDataStates} from './store';
 
 const route = [
   {path: '', component: ReqDataComponent},
@@ -16,7 +19,8 @@ const route = [
 
 @NgModule({
   declarations: [
-    ReqDataComponent
+    ReqDataComponent,
+    ImageCropperComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +31,8 @@ const route = [
     AngularCropperjsModule,
     AngularFontAwesomeModule,
     HttpClientModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    NgxsModule.forFeature(ReqDataStates),
   ]
 })
 export class ReqDataModule { }

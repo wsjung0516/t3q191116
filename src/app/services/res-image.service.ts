@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {interval, Observable, of} from "rxjs";
-import {delay, switchMap, take} from "rxjs/operators";
+import {Observable, of} from "rxjs";
+import {delay, map, take} from "rxjs/operators";
 import {HttpClient} from '@angular/common/http';
 
 @Injectable({
@@ -18,12 +18,24 @@ export class ResImageService {
         switchMap(() => of({res:201, title:'New Title'}))
       );
 */
-     // return of({response:201, data:'New Title'}).pipe(delay(4000));
-
-
-
-    return this.http.post( this.url, toFormData(data));
-
+    // return of({response:201, data:'New Title'}).pipe(delay(4000));
+/*
+    return this.http.get('assets/sample_data/rdata.json').pipe(
+      map( res => res['data']),
+      delay(2000)
+    );
+*/
+    return this.http.post( this.url, toFormData(data)).pipe(
+      map( (res) => {
+        if( res['response'] === 201) {
+          // console.log('rdata', res);
+          return res['data'];
+        } else {
+          return res
+        }
+      }),
+      take(1)
+    )
   }
 }
 export function toFormData<T>( formValue: T ) {
