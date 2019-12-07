@@ -9,7 +9,7 @@
 <div class="respone-image">
   <mat-grid-list cols="4" rowHeight="1:1" >
     <mat-grid-tile *ngFor="let img of (resultImage$ | async)['images'];let i = index" (click)="dispImgDetail(img)">
-      <img [src]="img.small">
+      <img [src]="img.small" style="max-width: 100%; height: auto;">
     </mat-grid-tile>
   </mat-grid-list>
 </div>

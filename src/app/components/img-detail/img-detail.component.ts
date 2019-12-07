@@ -14,8 +14,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
                 <img class="card-img" [src]="data.big">
             </div>
             <mat-card-content>
-                <p>{{data.description}}
-                </p>
+                <p>{{data.IRN}}</p><p>{{data.IRD}}</p><p>{{data.ITN}}</p>
+                <p>{{data.ITD}}</p><p>{{data.ITB}}</p><p>{{data.ICL}}</p>
             </mat-card-content>
             <mat-card-actions align="end">
                 <button mat-raised-button (click)="close()">취소</button>
