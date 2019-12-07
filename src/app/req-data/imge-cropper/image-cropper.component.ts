@@ -16,7 +16,7 @@ import {MatSlideToggleChange} from '@angular/material';
       <button fxFlex="25%" class="previous_page_button" mat-raised-button color="basic" (click)="nextPage.emit()"> 검색결과</button>
       <button fxFlex="70%" class="image_upload_button" mat-raised-button color="primary" (click)="imgFileInput.click()">
         이미지업로드</button>
-      <mat-slide-toggle fxFlex="30%" color="primary" [checked]="isToggled">크롭핑</mat-slide-toggle>
+<!--      <mat-slide-toggle fxFlex="30%" color="primary" [checked]="isToggled">크롭핑</mat-slide-toggle>-->
     </div>
     <input id="image_name" hidden type="file" #imgFileInput (change)="onFileSelected($event)"/>
     <div>
