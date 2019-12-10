@@ -13,10 +13,17 @@ import {MatSlideToggleChange} from '@angular/material';
   selector: 'app-image-cropper',
   template: `
     <div fxLayout="row" fxLayoutAlign="space-between center">
-      <button fxFlex="25%" class="previous_page_button" mat-raised-button color="basic" (click)="nextPage.emit()"> 검색결과</button>
-      <button fxFlex="70%" class="image_upload_button" mat-raised-button color="primary" (click)="imgFileInput.click()">
+      <button fxFlex="22%" class="previous_page_button" mat-raised-button color="basic" (click)="nextPage.emit()"><span style="font-size: 12px">검색결과</span></button>
+      <button fxFlex="33%" class="image_upload_button" mat-raised-button color="primary" (click)="imgFileInput.click()">
         이미지업로드</button>
-<!--      <mat-slide-toggle fxFlex="30%" color="primary" [checked]="isToggled">크롭핑</mat-slide-toggle>-->
+      <div fxFlex="40%" style="padding-top: 5px;padding-left: 8px;background: #f0f0f0; border-radius: 5px">
+          <mat-radio-group aria-label="Select an option" [ngModel]="radioValue">
+              <mat-radio-button value="03" (click)="raSet03()"><span class="raSet">동물</span></mat-radio-button>
+              <mat-radio-button value="05" (click)="raSet05()"><span class="raSet">식물</span></mat-radio-button>
+          </mat-radio-group>
+      </div>
+
+        <!--      <mat-slide-toggle fxFlex="30%" color="primary" [checked]="isToggled">크롭핑</mat-slide-toggle>-->
     </div>
     <input id="image_name" hidden type="file" #imgFileInput (change)="onFileSelected($event)"/>
     <div>
@@ -28,9 +35,8 @@ import {MatSlideToggleChange} from '@angular/material';
         <button mat-stroked-button color="primary" (click)="zoom(false)"><i class="fa fa-search-minus fa-lg"></i></button>
         <!--<button mat-stroked-button color="warn" (click)="save()"><i class="fa fa-crop fa-lg"></i></button>-->
         <button mat-stroked-button color="primary" (click)="rotate()"><i class="fa fa-rotate-left fa-lg"></i></button>
-        <button mat-stroked-button color="primary" (click)="rotateright()"><i class="fa fa-rotate-right fa-lg"></i>
-        </button>
-        <button mat-stroked-button color="accent" (click)="destroy()"><i class="fa fa-window-close  fa-lg"></i></button>
+        <button mat-stroked-button color="primary" (click)="rotateright()"><i class="fa fa-rotate-right fa-lg"></i></button>
+<!--        <button mat-stroked-button color="accent" (click)="destroy()"><i class="fa fa-window-close  fa-lg"></i></button>-->
       </div>
     </div>
   `,
@@ -39,7 +45,7 @@ import {MatSlideToggleChange} from '@angular/material';
       position:relative;
       top: 15px;
       display: flex;
-      justify-content: space-between;
+      justify-content: left;
 
     }
     .cropper-image {
@@ -59,7 +65,14 @@ import {MatSlideToggleChange} from '@angular/material';
       background-color: green;
 
     }
-
+    .raSet {
+      margin-right: 10px;
+        padding-left: -10px;
+        font-size: 13px;
+    }
+    div.mat-radio-label-content {
+        padding-left: 0px;
+    }
 
   `],
   providers: [{
@@ -78,6 +91,8 @@ export class ImageCropperComponent implements ControlValueAccessor, OnInit, DoCh
   isToggled = false;
   height;
   width;
+  radioValue: string;
+
   @Output() nextPage = new EventEmitter();
 
   constructor() {
@@ -114,12 +129,22 @@ export class ImageCropperComponent implements ControlValueAccessor, OnInit, DoCh
   }
 
   ngOnInit(): void {
+    this.radioValue = localStorage.getItem('radioValue');
   }
   onToggleChange(ev: MatSlideToggleChange) {
     console.log('toggleChange', ev, ev.checked);
     this.isToggled = ev.checked;
 
   }
+  raSet03() {
+    this.radioValue = '03';
+    localStorage.setItem('radioValue', this.radioValue);
+  }
+  raSet05() {
+    this.radioValue = '05';
+    localStorage.setItem('radioValue', this.radioValue);
+  }
+
   rotate(){
     console.log('rotate', this.angularCropper);
     if(this.angularCropper)

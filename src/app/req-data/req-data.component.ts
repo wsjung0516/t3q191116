@@ -36,7 +36,7 @@ export class ReqDataComponent implements OnInit, OnDestroy {
   }
   ngOnInit() {
     this.changeDetectorRef.detectChanges();
-    this.radioValue = '03';
+
     this.store.dispatch(new ResetState());
     this.croppedImageData.valueChanges.pipe(untilDestroyed(this)).subscribe(value => {
       console.log('req-data ngOnInit value-->', value);
@@ -50,15 +50,22 @@ export class ReqDataComponent implements OnInit, OnDestroy {
   goNextPage() {
     this.store.dispatch(new Navigate(['/res-data']))
   }
+
+/*
+  raSet03() { this.radioValue = '03'; }
+  raSet05() { this.radioValue = '05'; }
+*/
+
   save() {
     this.cropImage$.pipe(untilDestroyed(this)).subscribe( res => {
       // console.log('res-->',res);
       this.modifyImage = res['image'].slice(23, res['image'].length);
+      this.radioValue = localStorage.getItem('radioValue');
       let data = {
         imageName: 't3q',
         imageSize: (res['height']/res['width']),
         imageType: 'jpeg',
-        imageEmb: this.modifyImage,
+        imageEmb: res['image'], // this.modifyImage,
         imageCate: this.radioValue
       };
       this.openSnackBar("접수 되었습니다. 잠시만 기다려 주세요!!",'Waiting !');

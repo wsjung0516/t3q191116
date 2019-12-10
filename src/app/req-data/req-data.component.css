@@ -9,14 +9,16 @@
 }
 .radio-button-group1 {
   position: relative;
-  top: 5px;
+  top: -47px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
 
 }
 .mat-raised-button2 {
   position: relative;
   top: 25px;
+  width: 23%;
+  font-size: 13px;
   background-color: green;
   color: white;
 }
