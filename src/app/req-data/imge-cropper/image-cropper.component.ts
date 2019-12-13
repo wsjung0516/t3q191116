@@ -30,14 +30,16 @@ import {MatSlideToggleChange} from '@angular/material';
       <div class="cropper-image" >
         <angular-cropper #angularCropper [cropperOptions]="cropperOptions" [imageUrl]="url" *ngIf="url"></angular-cropper>
       </div>
+<!--
       <div class="button-group1" *ngIf="!!angularCropper">
         <button mat-raised-button color="primary" (click)="zoom(true)"><i class="fa fa-search-plus fa-lg"></i></button>
         <button mat-stroked-button color="primary" (click)="zoom(false)"><i class="fa fa-search-minus fa-lg"></i></button>
-        <!--<button mat-stroked-button color="warn" (click)="save()"><i class="fa fa-crop fa-lg"></i></button>-->
+        &lt;!&ndash;<button mat-stroked-button color="warn" (click)="save()"><i class="fa fa-crop fa-lg"></i></button>&ndash;&gt;
         <button mat-stroked-button color="primary" (click)="rotate()"><i class="fa fa-rotate-left fa-lg"></i></button>
         <button mat-stroked-button color="primary" (click)="rotateright()"><i class="fa fa-rotate-right fa-lg"></i></button>
-<!--        <button mat-stroked-button color="accent" (click)="destroy()"><i class="fa fa-window-close  fa-lg"></i></button>-->
+        <button mat-stroked-button color="accent" (click)="destroy()"><i class="fa fa-window-close  fa-lg"></i></button>
       </div>
+-->
     </div>
   `,
   styles: [`
@@ -52,17 +54,21 @@ import {MatSlideToggleChange} from '@angular/material';
       position: relative;
       top:10px;
       width: 100%;
-      height: 440px;
+      height: 390px;
       overflow: hidden;
       background-size: contain;
       background-repeat: no-repeat;
       z-index: 10;
     }
     .previous_page_button {
-      background-color: lightblue;
+        background-color: #1976d2;
+        color: white;
+        font-weight: bold;
     }
     .image_upload_button {
-      background-color: green;
+        background-color: green;
+        color: white;
+        font-weight: bold;
 
     }
     .raSet {
