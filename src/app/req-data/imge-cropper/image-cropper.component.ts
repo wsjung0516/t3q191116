@@ -14,7 +14,7 @@ import {MatSlideToggleChange} from '@angular/material';
   template: `
     <div fxLayout="row" fxLayoutAlign="space-between center">
       <button fxFlex="22%" class="previous_page_button" mat-raised-button color="basic" (click)="nextPage.emit()"><span style="font-size: 12px">검색결과</span></button>
-      <button fxFlex="33%" class="image_upload_button" mat-raised-button color="primary" (click)="imgFileInput.click()">
+      <button fxFlex="33%" class="image_upload_button" mat-raised-button color="primary" (click)="imgFileInput.click();isLoading=true">
         이미지업로드</button>
       <div fxFlex="40%" style="padding-top: 5px;padding-left: 8px;background: #f0f0f0; border-radius: 5px">
           <mat-radio-group aria-label="Select an option" [ngModel]="radioValue">
@@ -25,6 +25,7 @@ import {MatSlideToggleChange} from '@angular/material';
 
         <!--      <mat-slide-toggle fxFlex="30%" color="primary" [checked]="isToggled">크롭핑</mat-slide-toggle>-->
     </div>
+    <mat-spinner *ngIf="isLoading" [diameter]="40"></mat-spinner>
     <input id="image_name" hidden type="file" #imgFileInput (change)="onFileSelected($event)"/>
     <div>
       <div class="cropper-image" >
@@ -94,7 +95,7 @@ export class ImageCropperComponent implements ControlValueAccessor, OnInit, DoCh
   cropperOptions:any;
   onChange;
   isCropped = false;
-  isToggled = false;
+  isLoading = false;
   height;
   width;
   radioValue: string;
@@ -115,7 +116,7 @@ export class ImageCropperComponent implements ControlValueAccessor, OnInit, DoCh
   ngDoCheck(): void {
 
     if(
-      // this.isToggled  &&
+      //
       this.angularCropper &&
       this.angularCropper.cropper &&
       this.angularCropper.cropper.getCroppedCanvas() &&
@@ -124,23 +125,19 @@ export class ImageCropperComponent implements ControlValueAccessor, OnInit, DoCh
        ) {
       //
       /**To set toggle if there is any change in the cropped area*/
-      if( this.height ) this.isToggled = true;
+      // if( this.height ) this.isToggled = true;
       this.height = this.angularCropper.cropper.getCroppedCanvas().height;
       this.width = this.angularCropper.cropper.getCroppedCanvas().width;
       //
       this.makeCroppedImage().then((data) => {
-        this.onChange( data )
+        this.isLoading = false;
+        this.onChange( data );
       });
     }
   }
 
   ngOnInit(): void {
     this.radioValue = localStorage.getItem('radioValue');
-  }
-  onToggleChange(ev: MatSlideToggleChange) {
-    console.log('toggleChange', ev, ev.checked);
-    this.isToggled = ev.checked;
-
   }
   raSet03() {
     this.radioValue = '03';
@@ -151,23 +148,6 @@ export class ImageCropperComponent implements ControlValueAccessor, OnInit, DoCh
     localStorage.setItem('radioValue', this.radioValue);
   }
 
-  rotate(){
-    console.log('rotate', this.angularCropper);
-    if(this.angularCropper)
-      this.angularCropper.cropper.rotate(90);
-  }
-  rotateright(){
-    if(this.angularCropper)
-      this.angularCropper.cropper.rotate(-90);
-  }
-  zoom(zoomIn:boolean)
-  {
-    if(this.angularCropper)
-    {
-      let factor=zoomIn?0.1:-0.1;
-      this.angularCropper.cropper.zoom(factor);
-    }
-  }
   destroy()
   {
     if(this.angularCropper)
@@ -198,12 +178,15 @@ export class ImageCropperComponent implements ControlValueAccessor, OnInit, DoCh
   makeCroppedImage() {
     return new Promise( resolve => {
       let croppedImage;
+/*
       console.log('isToggled', this.isToggled);
       if( !this.isToggled) {
           console.log('!isToggled this.selectedFile');
          resolve({image: this.selectedFile, height: this.height, width: this.width})
       }
       else if(this.angularCropper ) {
+*/
+      if(this.angularCropper ) {
         croppedImage = this.angularCropper
           .cropper.getCroppedCanvas()
           .toDataURL('image/jpeg', (100 / 100));

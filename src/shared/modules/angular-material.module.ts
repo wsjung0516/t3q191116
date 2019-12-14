@@ -2,9 +2,19 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   MatButtonModule,
-  MatCheckboxModule, MatDialogModule, MatFormFieldModule, MatGridListModule, MatIconModule, MatInputModule, MatProgressBarModule,
-  MatRadioModule, MatSlideToggleModule, MatSnackBarModule,
-  MatTabsModule, MatToolbarModule
+  MatCheckboxModule,
+  MatDialogModule,
+  MatFormFieldModule,
+  MatGridListModule,
+  MatIconModule,
+  MatInputModule,
+  MatProgressBarModule,
+  MatProgressSpinnerModule,
+  MatRadioModule,
+  MatSlideToggleModule,
+  MatSnackBarModule,
+  MatTabsModule,
+  MatToolbarModule
 } from '@angular/material';
 
 const MaterialModules = [
@@ -20,7 +30,8 @@ const MaterialModules = [
   MatDialogModule,
   MatFormFieldModule,
   MatInputModule,
-  MatSlideToggleModule
+  MatSlideToggleModule,
+  MatProgressSpinnerModule
 
 ]
 
