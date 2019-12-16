@@ -125,7 +125,7 @@ export class ImageCropperComponent implements ControlValueAccessor, OnInit, DoCh
        ) {
       //
       /**To set toggle if there is any change in the cropped area*/
-      // if( this.height ) this.isToggled = true;
+      if( this.height ) this.isCropped = true;
       this.height = this.angularCropper.cropper.getCroppedCanvas().height;
       this.width = this.angularCropper.cropper.getCroppedCanvas().width;
       //
@@ -137,7 +137,9 @@ export class ImageCropperComponent implements ControlValueAccessor, OnInit, DoCh
   }
 
   ngOnInit(): void {
-    this.radioValue = localStorage.getItem('radioValue');
+    let radio = localStorage.getItem('radioValue');
+    if( !radio ) localStorage.setItem('radioValue', '03');
+    this.radioValue = radio? radio : "03";
   }
   raSet03() {
     this.radioValue = '03';
@@ -178,15 +180,13 @@ export class ImageCropperComponent implements ControlValueAccessor, OnInit, DoCh
   makeCroppedImage() {
     return new Promise( resolve => {
       let croppedImage;
-/*
-      console.log('isToggled', this.isToggled);
-      if( !this.isToggled) {
+      console.log('isCropped', this.isCropped);
+      if( !this.isCropped) {
           console.log('!isToggled this.selectedFile');
          resolve({image: this.selectedFile, height: this.height, width: this.width})
       }
       else if(this.angularCropper ) {
-*/
-      if(this.angularCropper ) {
+        this.isCropped = false;
         croppedImage = this.angularCropper
           .cropper.getCroppedCanvas()
           .toDataURL('image/jpeg', (100 / 100));
