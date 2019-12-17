@@ -68,7 +68,7 @@ export class ReqDataComponent implements OnInit, OnDestroy {
         imageEmb: res['image'], // this.modifyImage,
         imageCate: this.radioValue
       };
-      this.openSnackBar("접수 되었습니다!! 검색이 진행중입니다....",'Waiting !');
+      this.openSnackBar("유사도 검색이 진행중입니다....",'Waiting !');
       this.store.dispatch( new StartAnalyze(data));
     });
   }

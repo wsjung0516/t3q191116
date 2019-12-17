@@ -180,9 +180,9 @@ export class ImageCropperComponent implements ControlValueAccessor, OnInit, DoCh
   makeCroppedImage() {
     return new Promise( resolve => {
       let croppedImage;
-      console.log('isCropped', this.isCropped);
+      // console.log('isCropped', this.isCropped);
       if( !this.isCropped) {
-          console.log('!isToggled this.selectedFile');
+          // console.log('!isToggled this.selectedFile');
          resolve({image: this.selectedFile, height: this.height, width: this.width})
       }
       else if(this.angularCropper ) {
