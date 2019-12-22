@@ -30,7 +30,7 @@ export class ResDataComponent {
   dispOriginalImage(ev) { /** Display Original Image*/
     const dialorRef = this.matDialog.open( ImgDetailComponent, {
       panelClass: 'myapp-no-padding-dialog',
-      height: '450px',
+      height: '470px',
       width: '300px',
       data: {big:ev.target.src}
     });
@@ -45,7 +45,7 @@ export class ResDataComponent {
     const dialorRef = this.matDialog.open( ImgDetailComponent, {
       panelClass: 'myapp-no-padding-dialog',
       width: '300px',
-      height: '450px',
+      height: '470px',
       data: event
     });
     dialorRef.afterClosed().subscribe((res) => {

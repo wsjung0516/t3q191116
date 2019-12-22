@@ -27,8 +27,8 @@ export class ResImageService {
 */
     return this.http.post( this.url, toFormData(data)).pipe(
       map( (res) => {
+          console.log('response', res);
         if( res['response'] === 201) {
-          // console.log('rdata', res);
           return res['data'];
         } else {
           return res
